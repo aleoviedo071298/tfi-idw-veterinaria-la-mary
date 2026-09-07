@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="icon" href="./assets/img/Firefly.ico">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-logo">
+            <a href="index.html">
+                <img src="./assets/img/logo.png" alt="Veterinaria La Mary">
+            </a>
+        </div>
+        <nav class="header-menu">
+            <ul>
+                <li>
+                    <a href="index.html">Inicio</a>
+                </li>
+                <li>
+                    <a href="nosotros.html">Nosotros</a>
+                </li>
+                <li>
+                    <a href="contacto.html">Contacto</a>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+    <section class="contacto">
+        <div class="contacto-encabezado">
+            <h2>Contactanos</h2>
+            <p>¿Tenés alguna consulta? Completá el formulario y nos pondremos en contacto con vos.</p>
+        </div>
+
+        <div class="contacto-grid">
+            <!-- COLUMNA IZQUIERDA -->
+            <form class="formulario-contacto">
+                <div class="campo">
+                    <label for="nombre">Nombre</label>
+                    <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    placeholder="Ingresá tu nombre"
+                    required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="email">Correo electrónico</label>
+                    <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="ejemplo@email.com"
+                    required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="telefono">Teléfono</label>
+                    <input
+                    type="tel"
+                    id="telefono"
+                    name="telefono"
+                    placeholder="+54 9 297..."
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea
+                    id="mensaje"
+                    name="mensaje"
+                    rows="5"
+                    placeholder="Escribí tu consulta..."
+                    ></textarea>
+                </div>
+
+                <button type="submit">
+                    Enviar consulta
+                </button>
+            </form>
+
+            <!-- COLUMNA DERECHA -->
+            <div class="ubicacion">
+                <h2>¿Dónde estamos?</h2>
+                <p>Encontranos en nuestra veterinaria.</p>
+                <div class="mapa">
+                    <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3406.1682715900256!2d-58.0252741236545!3d-31.381923394587414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95ade8161e0ef8c7%3A0x732306b63f61c0e2!2sFacultad%20de%20Ciencias%20de%20la%20Administraci%C3%B3n%20(UNER)!5e0!3m2!1ses!2sar!4v1788698450100!5m2!1ses!2sar"
+                    title="Ubicación de Veterinaria La Mary"
+                    loading="lazy"
+                    allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer class="footer">
+        <div class="footer-contenido">
+
+            <div class="footer-marca">
+            <h3>Veterinaria La Mary</h3>
+            <p>Cuidamos a quienes forman parte de tu familia 🐾</p>
+            </div>
+
+            <div class="footer-links">
+            <a href="https://www.facebook.com/" target="_blank"><img src="./assets/img/facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/" target="_blank"><img src="./assets/img/instagram.png" alt="Instagram"></a>
+            <a href="https://www.tiktok.com/" target="_blank"><img src="./assets/img/tiktok.png" alt="Tiktok"></a>
+            </div>
+
+            <div class="footer-contacto">
+            <p>📍 Argentina</p>
+            <p>📞 +54 9 297 4040637</p>
+            </div>
+
+        </div>
+
+        <div class="footer-copyright">
+            <p>© 2026 Veterinaria La Mary. Todos los derechos reservados.</p>
+        </div>
+
+    </footer>
+</body>
+</html>
