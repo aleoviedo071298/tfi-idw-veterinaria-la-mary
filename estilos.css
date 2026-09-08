@@ -179,6 +179,24 @@ body {
   margin-bottom: 15px;
 }
 
+.boton-contacto{
+  width: 15%;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #013847;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.boton-contacto:hover {
+  background-color: #43C0AF;
+  
+}
+
+
 /* Grilla de profesionales */
 .profesionales {
   background-color: #E2ECED;
