@@ -1,431 +1,359 @@
-/* Estilos generales */
+/* ==========================================================================
+   Veterinaria La Mary - Hoja de estilos
+   ==========================================================================
+   Cómo se usa: los tres HTML cargan primero Bootstrap y después este archivo.
+   Bootstrap resuelve la grilla, la navbar, las cards, los formularios y las
+   utilidades (mb-3, text-center, d-flex...). Acá sólo va lo propio del sitio:
+   colores, bordes redondeados, sombras y algunos ajustes sobre Bootstrap.
+
+   Como este archivo se carga DESPUÉS de Bootstrap, si una regla nuestra y una de
+   Bootstrap tienen la misma especificidad, gana la nuestra.
+
+   Orden del archivo (sigue el recorrido del sitio):
+     1. General          5. Nosotros
+     2. Navbar           6. Contacto
+     3. Compartidos      7. Footer
+     4. Inicio           8. Responsive
+
+   Paleta:
+     #013847  azul oscuro (navbar, footer, textos, botones)
+     #43C0AF  turquesa    (hover, enlace activo, detalles)
+     #71B5D8  celeste     (enlaces de la navbar)
+     #F1F6F7  recuadro claro (.portada)
+     #DCE8EA  cards internas (un tono más oscuro que el recuadro, para contraste)
+     #0B6B5E  turquesa oscuro (especialidad de cada profesional, legible sobre #DCE8EA)
+     #E2ECED  texto del footer
+     #CDA37B  dorado (copyright)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. GENERAL (todas las páginas)
+   ========================================================================== */
+
+/* Fuente propia. font-display: swap muestra el texto enseguida con una fuente
+   de respaldo y lo cambia cuando termina de cargar Nunito Sans. */
 @font-face {
   font-family: "Nunito Sans";
   src: url("./assets/fonts/NunitoSans.ttf");
+  font-display: swap;
 }
 
+/* Fondo de patas y formas repetido en todo el sitio. Los recuadros (.portada)
+   lo tapan con su propio color; se ve en los márgenes. */
 body {
-  margin: 0;
   font-family: "Nunito Sans", sans-serif;
+  background-image: url("./assets/img/fondo.avif");
+  background-repeat: repeat;
 }
 
-.background-image {
-  background-image: linear-gradient(180deg, rgba(1, 56, 71, 0.45), rgba(1, 56, 71, 0.3)), url("./assets/img/entrada.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-}
 
-/* Estilos para la barra de navegación */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* ==========================================================================
+   2. BARRA DE NAVEGACIÓN (Bootstrap navbar, todas las páginas)
+   La estructura (hamburguesa, colapso, enlaces) la resuelve Bootstrap; acá sólo
+   se pinta. .navbar-principal es la clase propia que va junto a "navbar".
+   ========================================================================== */
+.navbar-principal {
   padding: 15px 40px;
   background-color: #013847;
+  margin-bottom: 40px;           /* espacio entre la navbar y el contenido */
 }
 
-.header-logo img {
+/* El logo se fija a 200px de ancho; el alto se calcula solo para no deformarlo. */
+.navbar-principal .navbar-brand img {
   width: 200px;
-  height: auto;
 }
 
-.header-menu ul {
-  display: flex;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  gap: 25px;
-}
-
-.header-menu a {
-  text-decoration: none;
+/* Enlaces del menú. transition suaviza el cambio de color al pasar el mouse. */
+.navbar-principal .nav-link {
   color: #71B5D8;
   font-size: 20px;
   font-weight: bold;
   transition: color 0.3s;
 }
 
-.header-menu a:hover {
+/* Enlace bajo el mouse y enlace de la página actual (clase "active" en el HTML):
+   ambos se resaltan en turquesa. */
+.navbar-principal .nav-link:hover,
+.navbar-principal .nav-link.active {
   color: #43C0AF;
 }
 
-/* Estilos para la sección de hero */
-.hero {
-  position: relative;
-  min-height: 520px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-}
 
-.hero-encabezado {
-  max-width: 700px;
-  margin: 0 auto;
-}
+/* ==========================================================================
+   3. COMPONENTES COMPARTIDOS (los usan varias páginas)
+   ========================================================================== */
 
-.hero h1 {
-  color: #fff;
-  font-size: 50px;
-  margin-bottom: 20px;
-}
-
-.hero p {
-  color: #fff;
-  font-size: 30px;
-}
-
-/* Estilos para la sección de presentación */
-.presentacion {
-  padding: 5px 20px;
-}
-
-.presentacion-contenido {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-  background-color: #F5F3EF;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-.presentacion-contenido h2 {
+/* Recuadro contenedor de cada sección (index.html, nosotros.html, contacto.html).
+   También define el color de texto (#013847): títulos y párrafos de todo lo que
+   va adentro lo heredan, por eso no hace falta repetirlo en cada regla. */
+.portada {
+  background-color: #F1F6F7;
   color: #013847;
-  font-size: 28px;
-  line-height: 1.4;
-  margin-bottom: 30px;
-}
-
-.presentacion-contenido ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.presentacion-contenido li {
-  color: #013847;
-  font-size: 18px;
-  margin-bottom: 15px;
-}
-
-/* Estilos para la sección de servicios */
-.servicios {
-  padding: 5px 20px;
-}
-
-.servicios-contenido {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-  background-color: #F5F3EF;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-.servicios-contenido h2 {
-  color: #013847;
-  font-size: 32px;
-  margin-bottom: 30px;
-}
-
-.servicios-contenido ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.servicios-contenido li {
-  color: #013847;
-  font-size: 18px;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-/* Estilos para la sección de elegínos */
-.eleginos {
-  padding: 5px 20px 60px;
-}
-
-.eleginos-contenido {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-  background-color: #F5F3EF;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-.eleginos-contenido h2 {
-  color: #013847;
-  font-size: 32px;
-  margin-bottom: 30px;
-}
-
-.eleginos-contenido ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.eleginos-contenido li {
-  color: #013847;
-  font-size: 18px;
-  margin-bottom: 15px;
-}
-
-.boton-contacto{
-  width: 15%;
-  padding: 20px;
-  margin-top: 20px;
-  background-color: #013847;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-}
-.boton-contacto:hover {
-  background-color: #43C0AF;
-  
-}
-
-
-/* Grilla de profesionales */
-.profesionales {
-  background-color: #E2ECED;
-  padding: 70px 20px;
-}
-
-.profesionales-contenedor {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.profesionales-encabezado {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.profesionales-encabezado h2 {
-  color: #013847;
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.profesionales-encabezado p {
-  color: #013847;
-  font-size: 16px;
-}
-
-.profesionales-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-}
-
-.profesional-card {
-  background-color: #fff;
   padding: 30px 20px;
   border-radius: 16px;
-  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  margin-bottom: 40px;           /* separación entre un recuadro y el siguiente */
+}
+
+/* Cards que van DENTRO de un .portada. Comparten el mismo estilo (un tono más
+   oscuro que el recuadro para que haya contraste):
+   - .card-profesional  -> index.html
+   - .card-info         -> nosotros.html
+   - .formulario-contacto y .ubicacion -> contacto.html
+   "color" se repite acá porque .card de Bootstrap fija su propio color de texto.
+   "border: 0" saca el borde gris que Bootstrap le pone a .card. */
+.card-profesional,
+.card-info,
+.formulario-contacto,
+.ubicacion {
+  background-color: #DCE8EA;
+  color: #013847;
+  border: 0;
+  border-radius: 16px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-.profesional-card img {
+/* Botón principal. Bootstrap arma los colores de .btn con variables CSS
+   (--bs-btn-*), así que en vez de reescribir el botón sólo cambiamos las
+   variables: normal, hover (mouse encima) y active (mientras se presiona). */
+.btn-principal {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #013847;
+  --bs-btn-border-color: #013847;
+  --bs-btn-border-radius: 8px;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #43C0AF;
+  --bs-btn-hover-border-color: #43C0AF;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #43C0AF;
+  --bs-btn-active-border-color: #43C0AF;
+}
+
+
+/* ==========================================================================
+   4. INICIO (index.html) - catálogo de profesionales
+   Estructura de cada card: foto, nombre (h3), especialidad (span), texto.
+   ========================================================================== */
+
+/* Padding propio de la card (arriba/abajo 30px, costados 20px). */
+.card-profesional {
+  padding: 30px 20px;
+}
+
+/* Foto circular de 100x100. margin: 0 auto la centra (la card es una columna
+   flex). object-fit: cover recorta la foto para llenar el círculo sin deformarla. */
+.card-profesional .card-img-top {
   width: 100px;
   height: 100px;
+  margin: 0 auto;
   border-radius: 50%;
+  object-fit: cover;
 }
 
-.profesional-info h3 {
-  color: #013847;
-  margin: 15px 0 5px;
+/* Bootstrap le da 1rem de padding a .card-body; ya lo damos en la card. */
+.card-profesional .card-body {
+  padding: 0;
 }
 
-.profesional-info span {
-  color: #43C0AF;
+.card-profesional .card-title {
+  margin: 15px 0 5px;            /* arriba 15px, costados 0, abajo 5px */
+}
+
+/* Especialidad. Turquesa oscuro para que el texto pequeño se lea bien sobre
+   el fondo de la card (el turquesa #43C0AF quedaba con poco contraste). */
+.card-profesional span {
+  color: #0B6B5E;
   font-weight: 700;
   font-size: 14px;
 }
 
-.profesional-info p {
-  color: #013847;
+.card-profesional .card-text {
   font-size: 15px;
   margin-top: 10px;
 }
 
-/* Estilos para la sección de contacto */
-.contacto {
-  background-color: #E2ECED;
-  padding: 60px 20px;
+
+/* ==========================================================================
+   5. NOSOTROS (nosotros.html) - misión/visión, valores, carrusel y cuidados
+   ========================================================================== */
+
+/* Cards informativas (.card-info, estilo compartido más arriba). Los items de
+   las listas traen fondo blanco y color propios de Bootstrap: acá se vuelven
+   transparentes y heredan el color de la card. */
+.card-info .list-group-item {
+  background-color: transparent;
+  color: inherit;
 }
 
-.contacto-encabezado {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.contacto-encabezado h2 {
-  color: #013847;
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.contacto-encabezado p {
-  color: #013847;
-}
-
-.contacto-grid {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-
-/* Estilos para el formulario de contacto */
-.formulario-contacto {
+/* Ícono de cada valor/consejo: cuadradito blanco con el ícono adentro. */
+.card-info .badge {
   background-color: #fff;
-  padding: 30px;
+  color: #013847;
+}
+
+/* Carrusel de cuidados. overflow: hidden hace que las esquinas redondeadas
+   recorten lo que hay adentro. Los colores de flechas e indicadores los pone
+   Bootstrap con data-bs-theme="dark" (en el HTML). */
+.carousel-cuidados {
   border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  background-color: #DCE8EA;
 }
 
-.campo {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 18px;
+/* Imagen de cada diapositiva: alto fijo para que no ocupe toda la pantalla.
+   object-fit: contain la muestra completa (sin recortar) dentro de ese alto;
+   el ancho se ajusta solo para mantener la proporción. */
+.carousel-cuidados .carousel-img {
+  height: 320px;
+  max-width: 100%;
+  margin-top: 20px;
+  border-radius: 16px;
+  object-fit: contain;
 }
 
-.campo label {
+/* Texto de la diapositiva. Bootstrap lo pone encima de la imagen
+   (position: absolute) y no se leía. Con position: static pasa a ir debajo,
+   sobre el fondo sólido del carrusel. El padding inferior de 55px deja lugar a
+   los indicadores, y los laterales de 70px dejan libres las flechas. */
+.carousel-cuidados .carousel-caption {
+  position: static;
+  padding: 20px 70px 55px;
   color: #013847;
-  font-weight: 700;
-  margin-bottom: 7px;
 }
 
-.campo input, .campo textarea {
-  padding: 12px 14px;
-  border: 2px solid #E2ECED;
-  border-radius: 8px;
-  font: inherit;
-  outline: none;
+/* Imagen de "Higiene y cuidados". Limita el alto; object-fit: cover recorta
+   los bordes para llenar el espacio sin deformarla. */
+.card-info .img-higiene {
+  max-height: 325px;
+  object-fit: cover;
 }
 
-.campo input:focus, .campo textarea:focus {
-  border-color: #43C0AF;
-}
 
-.formulario-contacto button {
-  width: 100%;
-  padding: 14px;
-  background-color: #013847;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-}
+/* ==========================================================================
+   6. CONTACTO (contacto.html) - formulario y mapa
+   ========================================================================== */
 
-.formulario-contacto button:hover {
-  background-color: #43C0AF;
-}
-
-/* Estilos para la sección de ubicación */
+/* Padding interno de las dos cards (formulario y ubicación). El color, el
+   redondeo y la sombra vienen del bloque compartido de más arriba. */
+.formulario-contacto,
 .ubicacion {
-  text-align: center;
+  padding: 30px;
 }
 
-.ubicacion h2 {
-  color: #013847;
-  font-size: 32px;
-  margin-top: 0;
-  margin-bottom: 10px;
+/* Campos del formulario (.form-control es de Bootstrap): borde blanco de 2px
+   que resalta sobre el fondo de la card, y esquinas redondeadas. */
+.formulario-contacto .form-control {
+  border: 2px solid #fff;
+  border-radius: 8px;
 }
 
-.ubicacion p {
-  color: #013847;
-  margin-bottom: 20px;
+/* Campo seleccionado: el borde pasa a turquesa. Se quita el resplandor azul
+   que Bootstrap agrega por defecto (box-shadow) para que no compita. */
+.formulario-contacto .form-control:focus {
+  border-color: #43C0AF;
+  box-shadow: none;
 }
 
+/* Contenedor del mapa. En el HTML lleva position-relative y flex-grow-1 (el
+   iframe se estira para ocupar todo su espacio). min-height evita que se
+   aplaste si el formulario es bajo. overflow: hidden redondea el mapa. */
 .mapa {
-  width: 100%;
+  min-height: 300px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-.mapa iframe {
-  display: block;
-  width: 100%;
-  height: 430px;
-  border: 0;
-}
 
-/* Estilos para el pie de página */
+/* ==========================================================================
+   7. PIE DE PÁGINA (todas las páginas)
+   Estructura: 3 columnas (nombre, redes, contacto) y una línea de copyright.
+   ========================================================================== */
 .footer {
   background-color: #013847;
   color: #E2ECED;
   padding: 40px 20px 20px;
 }
 
-.footer-contenido {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 40px;
-}
-
-.footer-marca h3 {
-  color: #43C0AF;
-  margin-bottom: 10px;
-}
-
-.footer-marca p {
-  color: #E2ECED;
-}
-
-.footer-links {
-  display: inline-block;
-  margin-top: 20px;
-}
-
-.footer-links a {
-  color: #71B5D8;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.footer-links a img {
-  width: 35px;
-  height: 35px;
-  margin-right: 8px;
-}
-
-.footer-links a:hover {
+.footer h3 {
   color: #43C0AF;
 }
 
-.footer-contacto p {
+/* Bootstrap deja 1rem debajo de cada párrafo; en el footer se achica a 8px. */
+.footer p {
   margin-bottom: 8px;
 }
 
+/* Íconos de redes sociales (lista .nav de Bootstrap). */
+.footer-links {
+  margin-top: 20px;
+}
+
+/* Bootstrap le da padding a cada .nav-link; se quita para que el ícono quede
+   pegado a su margen. */
+.footer-links .nav-link {
+  padding: 0;
+  margin-right: 8px;
+}
+
+.footer-links img {
+  width: 35px;
+  height: 35px;
+  transition: opacity 0.3s;
+}
+
+/* Al pasar el mouse el ícono se aclara un poco. */
+.footer-links .nav-link:hover img {
+  opacity: 0.8;
+}
+
+/* Línea de derechos de autor: separada del resto por una línea turquesa. El
+   centrado y el tamaño chico los dan las clases text-center y small del HTML. */
 .footer-copyright {
-  max-width: 1200px;
-  margin: 30px auto 0;
+  margin-top: 30px;
   padding-top: 20px;
   border-top: 1px solid #43C0AF;
-  text-align: center;
+}
+
+.footer-copyright p {
   color: #CDA37B;
-  font-size: 14px;
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   8. RESPONSIVE
+   Va SIEMPRE al final: las reglas de acá tienen la misma especificidad que las
+   de arriba, y cuando dos reglas empatan gana la que aparece última en el
+   archivo. Si estuviera al principio, las reglas base la pisarían.
+
+   Puntos de quiebre de Bootstrap: sm 576px | md 768px | lg 992px | xl 1200px
+   La mayoría se resuelven en el HTML con clases de Bootstrap:
+     - md : col-md-6, col-md-4, row-cols-md-2  (columnas lado a lado)
+     - lg : navbar-expand-lg                   (la navbar deja de colapsar)
+     - xl : row-cols-xl-4                      (4 profesionales en una fila)
+   El @media de abajo cubre el punto de quiebre chico (celulares).
+   ========================================================================== */
+
+/* Celular (menos de 576px). max-width 575.98px = "hasta justo antes de sm". */
+@media (max-width: 575.98px) {
+  /* Navbar más baja y con menos margen lateral. */
+  .navbar-principal {
+    padding: 12px 16px;
+  }
+
+  /* Recuadros con menos padding para ganar espacio útil en pantalla chica. */
+  .portada {
+    padding: 20px 12px;
+  }
+
+  /* Imagen y texto del carrusel más compactos. */
+  .carousel-cuidados .carousel-img {
+    height: 220px;
+  }
+
+  .carousel-cuidados .carousel-caption {
+    padding: 15px 45px 50px;
+  }
 }
