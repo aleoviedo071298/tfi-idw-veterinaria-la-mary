@@ -38,7 +38,7 @@ npx vite
 - [x] Utilidades de Bootstrap: espaciados, flex, texto, tamaños y visibilidad
 - [x] Estructura semántica: `header`, `nav`, `main`, `section` y `footer`
 - [x] Diseño responsivo con cuatro puntos de quiebre de Bootstrap: `sm` (576px), `md` (768px), `lg` (992px) y `xl` (1200px)
-- [ ] Modo oscuro (opcional, no implementado)
+- [x] Modo oscuro (opcional): automático según preferencia del sistema (`prefers-color-scheme`), sin botón manual
 
 ### Puntos de quiebre
 

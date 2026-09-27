@@ -2,44 +2,32 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <!-- Necesario para el diseño responsivo: hace que el ancho de la página siga al del dispositivo
-         (sin esto, el celular mostraría la página "achicada" como si fuera de escritorio). -->
+    <!-- viewport para que se vea bien en el celular -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nosotros</title>
     <link rel="icon" href="./assets/img/Firefly.ico">
-    <!-- Bootstrap 5.3: framework de CSS (grillas, cards, navbar, formularios, botones, etc.),
-         cargado desde un CDN. Va SIEMPRE antes de estilos.css, para que nuestras reglas puedan pisar
-         las de Bootstrap. -->
+    <!-- Bootstrap por CDN, va antes de nuestro CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <!-- Estilos propios del sitio (colores, bordes, sombras y ajustes sobre Bootstrap). Ver
-         estilos.css. -->
+    <!-- nuestros estilos -->
     <link rel="stylesheet" href="estilos.css">
-    <!-- JavaScript de Bootstrap (bundle con Popper). "defer" lo ejecuta al terminar de leer el HTML.
-         Lo necesitan el menú hamburguesa y, en nosotros.html, el carrusel. -->
+    <!-- JS de Bootstrap, lo necesita el menú hamburguesa y el carrusel -->
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Encabezado del sitio con la barra de navegación. Es igual en las 3 páginas; sólo cambia qué
-         enlace lleva la clase "active". -->
+    <!-- navbar, igual en las 3 páginas, solo cambia el link activo -->
     <header>
-        <!-- Barra de navegación de Bootstrap. navbar-expand-lg: desde 992px (lg) los enlaces se muestran
-             en línea; por debajo se ocultan detrás del botón hamburguesa. data-bs-theme="dark": texto
-             claro para un fondo oscuro. navbar-principal es una clase propia (fondo y padding). -->
+        <!-- navbar-expand-lg = desde 992px se muestra en línea, antes usa el menú hamburguesa -->
         <nav class="navbar navbar-expand-lg navbar-principal" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.html">
                     <img src="./assets/img/logo.png" alt="Veterinaria La Mary">
                 </a>
-                <!-- Botón hamburguesa (sólo visible por debajo de lg). data-bs-toggle y data-bs-target le
-                     indican a Bootstrap que abra y cierre el bloque con id "navbarNav". -->
+                <!-- botón hamburguesa para móvil -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <!-- Bloque que se colapsa en móvil. Su id coincide con el data-bs-target del botón de arriba. -->
+                <!-- esto es lo que se colapsa en móvil -->
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <!-- Lista de enlaces. ms-auto los empuja hacia la derecha y gap-4 los separa. El enlace de la
-                         página actual lleva la clase "active" (se resalta en turquesa) y aria-current="page" (lo
-                         anuncian los lectores de pantalla). -->
                     <ul class="navbar-nav ms-auto gap-4">
                         <li class="nav-item">
                             <a class="nav-link" href="index.html">Inicio</a>
@@ -55,23 +43,15 @@
             </div>
         </nav>
     </header>
-    <!-- Contenido principal de la página. Cada bloque es una <section> con "container" de Bootstrap:
-         centra el contenido y le da un ancho máximo que cambia según el punto de quiebre. -->
     <main>
         <section class="container">
-            <!-- Título principal de la página. "visually-hidden" lo oculta en pantalla pero lo deja
-                 disponible para buscadores y lectores de pantalla (cada página debe tener un h1). -->
+            <!-- visually-hidden: el h1 no se ve pero queda para accesibilidad/SEO -->
             <h1 class="visually-hidden">Nosotros</h1>
             <!-- Misión, Visión y Valores -->
             <div class="portada">
-                <!-- Fila de la grilla con Misión y Visión. g-4: separación entre columnas; mb-4: espacio antes
-                     de la card de Valores. -->
+                <!-- 2 columnas desde md, apiladas en celular -->
                 <div class="row g-4 mb-4">
-                    <!-- Columna de 6 de 12: apiladas en móvil y lado a lado desde 768px (md). -->
                     <div class="col-md-6">
-                        <!-- Card de Bootstrap con estilo propio ".card-info" (fondo un tono más oscuro que el recuadro,
-                             para dar contraste). h-100 iguala la altura de ambas cards. El texto se distribuye en
-                             card-body (padding p-4), card-title y card-text. -->
                         <div class="card card-info h-100">
                             <div class="card-body p-4">
                                 <h2 class="card-title h3 text-center mb-3">Misión</h2>
@@ -90,8 +70,7 @@
                     </div>
                 </div>
 
-                <!-- Card de Valores: ocupa todo el ancho del recuadro. Usa list-group-flush (lista sin bordes) y
-                     un badge con un ícono por cada valor. -->
+                <!-- card de valores, con un ícono (badge) por cada uno -->
                 <div class="card card-info">
                     <div class="card-body p-4">
                         <h2 class="h3 mb-4 text-center">Valores que nos guían</h2>
@@ -116,26 +95,18 @@
                 </div>
             </div>
 
-            <!-- Carrusel de cuidados -->
+            <!-- carrusel de cuidados, avanza solo con data-bs-ride -->
             <div class="portada">
-                <!-- Carrusel de Bootstrap (necesita el JS del bundle). data-bs-ride="carousel" lo hace avanzar
-                     solo; data-bs-theme="dark" oscurece flechas e indicadores. ".carousel-cuidados"
-                     (estilos.css) le da bordes redondeados y el fondo. -->
                 <div id="carouselCuidados" class="carousel slide carousel-cuidados" data-bs-theme="dark" data-bs-ride="carousel">
-                    <!-- Puntitos de abajo: cada botón lleva a una diapositiva (data-bs-slide-to). El botón con
-                         "active" corresponde a la diapositiva visible. -->
+                    <!-- puntitos de abajo -->
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselCuidados" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                         <button type="button" data-bs-target="#carouselCuidados" data-bs-slide-to="1" aria-label="Slide 2"></button>
                         <button type="button" data-bs-target="#carouselCuidados" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
-                    <!-- Contenedor de las diapositivas. Cada .carousel-item es una: imagen + texto. Sólo una lleva
-                         "active" (la que se ve al cargar). -->
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="./assets/img/paseos.webp" class="d-block mx-auto carousel-img" alt="Guía de cuidados responsables">
-                            <!-- Texto de la diapositiva. Por defecto Bootstrap lo dibuja encima de la imagen; en estilos.css
-                                 lo pasamos debajo (position: static) sobre fondo sólido para que se lea siempre. -->
                             <div class="carousel-caption">
                                 <h3 class="h5">🐾 Guía de Cuidados Responsables</h3>
                                 <p>Las mascotas no son juguetes ni objetos. Son seres que sienten y sufren. Antes de adoptar o sumar un nuevo integrante, piensa si puedes cuidarlo durante toda su vida: <strong>tus compañeros pueden estar contigo más de 15 años.</strong></p>
@@ -156,8 +127,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Flechas anterior y siguiente. data-bs-slide indica la dirección; el texto "visually-hidden"
-                         es para lectores de pantalla. -->
+                    <!-- flechas para ir a la anterior/siguiente -->
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselCuidados" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Anterior</span>
@@ -171,7 +141,6 @@
 
             <!-- Higiene y esterilización -->
             <div class="portada">
-                <!-- Fila con Higiene y esterilización: dos columnas de 6 de 12 desde md, apiladas en móvil. -->
                 <div class="row g-4">
                     <div class="col-md-6">
                         <div class="card card-info h-100">
@@ -186,13 +155,8 @@
                                         <span class="badge me-2">🐾</span> Brindarles un espacio cómodo y protegido de temperaturas extremas.
                                     </li>
                                 </ul>
-                                <!-- Imagen: w-100 ocupa todo el ancho de la card; rounded-3 y shadow-sm dan borde redondeado y
-                                     sombra suave (utilidades de Bootstrap). ".img-higiene" (estilos.css) limita el alto y
-                                     recorta con object-fit. -->
                                 <img src="./assets/img/gato-bano.webp" alt="Peluquería canina" class="d-block w-100 rounded-3 shadow-sm my-4 img-higiene">
-                                <!-- Botón que abre WhatsApp con un mensaje ya escrito (el texto va codificado en la URL).
-                                     ".btn-principal" es el botón de Bootstrap con los colores del sitio; d-flex y gap-2 alinean
-                                     el ícono y el texto. -->
+                                <!-- botón que abre WhatsApp con un mensaje ya cargado -->
                                 <a href="https://wa.me/5492944579544?text=Hola!%20Quisiera%20pedir%20un%20turno%20para%20peluquería"
                                    target="_blank"
                                    class="btn btn-principal w-100 fw-bold py-2 shadow-sm d-flex align-items-center justify-content-center gap-2">
@@ -215,7 +179,7 @@
                                         <span class="badge me-2">♥</span> Lleva a tu mascota a esterilizar.
                                     </li>
                                     <li class="list-group-item px-0 border-0 mb-2">
-                                        <span class="badge me-2">♥</span> 💡 No es cruel, <strong>es un acto de amor.</strong>
+                                        <span class="badge me-2">♥</span> No es cruel, <strong>es un acto de amor.</strong>
                                     </li>
                                     <li class="list-group-item px-0 border-0 mb-2">
                                         <span class="badge me-2">♥</span> SALVAR VIDAS no tiene precio.
@@ -228,22 +192,19 @@
             </div>
         </section>
     </main>
-    <!-- Pie de página, igual en las 3 páginas. El fondo azul oscuro está definido en .footer
-         (estilos.css). -->
+    <!-- footer, igual en las 3 páginas -->
     <footer class="footer">
         <div class="container">
             <div class="row">
 
-                <!-- Grilla de 3 columnas: col-12 apila las columnas una debajo de otra en móvil, y col-md-4 (4
-                     de 12) las pone lado a lado desde 768px. -->
+                <!-- 3 columnas, apiladas en celular -->
                 <div class="col-12 col-md-4">
                     <h3>Veterinaria La Mary</h3>
                     <p>Cuidamos a quienes forman parte de tu familia 🐾</p>
                 </div>
 
                 <div class="col-12 col-md-4">
-                    <!-- Íconos de redes sociales. La clase "nav" de Bootstrap los pone en fila; target="_blank" abre
-                         cada red en otra pestaña. -->
+                    <!-- iconos de redes -->
                     <ul class="nav footer-links">
                         <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/" target="_blank"><img src="./assets/img/facebook.png" alt="Facebook"></a></li>
                         <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/" target="_blank"><img src="./assets/img/instagram.png" alt="Instagram"></a></li>
@@ -258,7 +219,6 @@
 
             </div>
 
-            <!-- Derechos de autor. text-center centra el texto y small reduce su tamaño. -->
             <div class="footer-copyright text-center small">
                 <p>© 2026 Veterinaria La Mary. Todos los derechos reservados.</p>
             </div>

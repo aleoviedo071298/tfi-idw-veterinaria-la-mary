@@ -1,148 +1,122 @@
-/* ==========================================================================
-   Veterinaria La Mary - Hoja de estilos
-   ==========================================================================
-   Cómo se usa: los tres HTML cargan primero Bootstrap y después este archivo.
-   Bootstrap resuelve la grilla, la navbar, las cards, los formularios y las
-   utilidades (mb-3, text-center, d-flex...). Acá sólo va lo propio del sitio:
-   colores, bordes redondeados, sombras y algunos ajustes sobre Bootstrap.
+/* estilos propios de Veterinaria La Mary, va después de Bootstrap en el HTML */
 
-   Como este archivo se carga DESPUÉS de Bootstrap, si una regla nuestra y una de
-   Bootstrap tienen la misma especificidad, gana la nuestra.
+/* colores en variables para poder cambiarlos todos juntos en modo oscuro */
+:root {
+  /* modo claro */
+  --bg-sitio: url("./assets/img/fondo.avif");
+  --bg-portada: #F1F6F7;
+  --bg-cards: #DCE8EA;
 
-   Orden del archivo (sigue el recorrido del sitio):
-     1. General          5. Nosotros
-     2. Navbar           6. Contacto
-     3. Compartidos      7. Footer
-     4. Inicio           8. Responsive
+  --texto-principal: #013847;
+  --texto-especialidad: #0B6B5E;
+  --texto-footer: #E2ECED;
 
-   Paleta:
-     #013847  azul oscuro (navbar, footer, textos, botones)
-     #43C0AF  turquesa    (hover, enlace activo, detalles)
-     #71B5D8  celeste     (enlaces de la navbar)
-     #F1F6F7  recuadro claro (.portada)
-     #DCE8EA  cards internas (un tono más oscuro que el recuadro, para contraste)
-     #0B6B5E  turquesa oscuro (especialidad de cada profesional, legible sobre #DCE8EA)
-     #E2ECED  texto del footer
-     #CDA37B  dorado (copyright)
-   ========================================================================== */
+  --color-primario: #013847; /* azul oscuro */
+  --color-acento: #43C0AF;   /* turquesa */
+  --color-celeste: #71B5D8;  /* enlaces navbar */
+  --color-dorado: #CDA37B;   /* copyright */
+  --bg-carousel: #DCE8EA;
+  --texto-carousel: #013847;
+  --bg-badge: #ffffff;
+  --texto-badge: #013847;
+}
 
+/* modo oscuro: se activa solo si el sistema del usuario está en oscuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-sitio: url("./assets/img/fondo2.avif");
+    --bg-portada: #1e293b;
+    --bg-cards: #2d3748;
+    --color-primario: #1e2530;
+    --texto-principal: #f8fafc;
+    --texto-footer: #cbd5e1;
+    --bg-carousel: #2d3748;
+    --texto-carousel: #f8fafc;
+    --bg-badge: #1e293b;
+    --texto-badge: #43C0AF;
+  }
+}
 
-/* ==========================================================================
-   1. GENERAL (todas las páginas)
-   ========================================================================== */
-
-/* Fuente propia. font-display: swap muestra el texto enseguida con una fuente
-   de respaldo y lo cambia cuando termina de cargar Nunito Sans. */
+/* fuente propia, font-display swap para que no tarde en mostrar texto */
 @font-face {
   font-family: "Nunito Sans";
   src: url("./assets/fonts/NunitoSans.ttf");
   font-display: swap;
 }
 
-/* Fondo de patas y formas repetido en todo el sitio. Los recuadros (.portada)
-   lo tapan con su propio color; se ve en los márgenes. */
 body {
   font-family: "Nunito Sans", sans-serif;
-  background-image: url("./assets/img/fondo.avif");
+  background-image: var(--bg-sitio);
   background-repeat: repeat;
 }
 
 
-/* ==========================================================================
-   2. BARRA DE NAVEGACIÓN (Bootstrap navbar, todas las páginas)
-   La estructura (hamburguesa, colapso, enlaces) la resuelve Bootstrap; acá sólo
-   se pinta. .navbar-principal es la clase propia que va junto a "navbar".
-   ========================================================================== */
+/* navbar */
 .navbar-principal {
   padding: 15px 40px;
-  background-color: #013847;
-  margin-bottom: 40px;           /* espacio entre la navbar y el contenido */
+  background-color: var(--color-primario);
+  margin-bottom: 40px;
 }
 
-/* El logo se fija a 200px de ancho; el alto se calcula solo para no deformarlo. */
 .navbar-principal .navbar-brand img {
   width: 200px;
 }
 
-/* Enlaces del menú. transition suaviza el cambio de color al pasar el mouse. */
 .navbar-principal .nav-link {
-  color: #71B5D8;
+  color: var(--color-celeste);
   font-size: 20px;
   font-weight: bold;
   transition: color 0.3s;
 }
 
-/* Enlace bajo el mouse y enlace de la página actual (clase "active" en el HTML):
-   ambos se resaltan en turquesa. */
 .navbar-principal .nav-link:hover,
 .navbar-principal .nav-link.active {
-  color: #43C0AF;
+  color: var(--color-acento);
 }
 
 
-/* ==========================================================================
-   3. COMPONENTES COMPARTIDOS (los usan varias páginas)
-   ========================================================================== */
-
-/* Recuadro contenedor de cada sección (index.html, nosotros.html, contacto.html).
-   También define el color de texto (#013847): títulos y párrafos de todo lo que
-   va adentro lo heredan, por eso no hace falta repetirlo en cada regla. */
+/* recuadro de cada sección, se usa en las 3 páginas */
 .portada {
-  background-color: #F1F6F7;
-  color: #013847;
+  background-color: var(--bg-portada);
+  color: var(--texto-principal);
   padding: 30px 20px;
   border-radius: 16px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  margin-bottom: 40px;           /* separación entre un recuadro y el siguiente */
+  margin-bottom: 40px;
 }
 
-/* Cards que van DENTRO de un .portada. Comparten el mismo estilo (un tono más
-   oscuro que el recuadro para que haya contraste):
-   - .card-profesional  -> index.html
-   - .card-info         -> nosotros.html
-   - .formulario-contacto y .ubicacion -> contacto.html
-   "color" se repite acá porque .card de Bootstrap fija su propio color de texto.
-   "border: 0" saca el borde gris que Bootstrap le pone a .card. */
+/* cards de adentro de un .portada, un tono más oscuro para que se note */
 .card-profesional,
 .card-info,
 .formulario-contacto,
 .ubicacion {
-  background-color: #DCE8EA;
-  color: #013847;
+  background-color: var(--bg-cards);
+  color: var(--texto-principal);
   border: 0;
   border-radius: 16px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-/* Botón principal. Bootstrap arma los colores de .btn con variables CSS
-   (--bs-btn-*), así que en vez de reescribir el botón sólo cambiamos las
-   variables: normal, hover (mouse encima) y active (mientras se presiona). */
+/* botón principal, usando las variables de color que trae Bootstrap */
 .btn-principal {
   --bs-btn-color: #fff;
-  --bs-btn-bg: #013847;
-  --bs-btn-border-color: #013847;
+  --bs-btn-bg: var(--color-primario);
+  --bs-btn-border-color: var(--color-primario);
   --bs-btn-border-radius: 8px;
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #43C0AF;
-  --bs-btn-hover-border-color: #43C0AF;
+  --bs-btn-hover-bg: var(--color-acento);
+  --bs-btn-hover-border-color: var(--color-acento);
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #43C0AF;
-  --bs-btn-active-border-color: #43C0AF;
+  --bs-btn-active-bg: var(--color-acento);
+  --bs-btn-active-border-color: var(--color-acento);
 }
 
 
-/* ==========================================================================
-   4. INICIO (index.html) - catálogo de profesionales
-   Estructura de cada card: foto, nombre (h3), especialidad (span), texto.
-   ========================================================================== */
-
-/* Padding propio de la card (arriba/abajo 30px, costados 20px). */
+/* index.html - catálogo de profesionales */
 .card-profesional {
   padding: 30px 20px;
 }
 
-/* Foto circular de 100x100. margin: 0 auto la centra (la card es una columna
-   flex). object-fit: cover recorta la foto para llenar el círculo sin deformarla. */
 .card-profesional .card-img-top {
   width: 100px;
   height: 100px;
@@ -151,19 +125,16 @@ body {
   object-fit: cover;
 }
 
-/* Bootstrap le da 1rem de padding a .card-body; ya lo damos en la card. */
 .card-profesional .card-body {
   padding: 0;
 }
 
 .card-profesional .card-title {
-  margin: 15px 0 5px;            /* arriba 15px, costados 0, abajo 5px */
+  margin: 15px 0 5px;
 }
 
-/* Especialidad. Turquesa oscuro para que el texto pequeño se lea bien sobre
-   el fondo de la card (el turquesa #43C0AF quedaba con poco contraste). */
 .card-profesional span {
-  color: #0B6B5E;
+  color: var(--texto-especialidad);
   font-weight: 700;
   font-size: 14px;
 }
@@ -174,36 +145,23 @@ body {
 }
 
 
-/* ==========================================================================
-   5. NOSOTROS (nosotros.html) - misión/visión, valores, carrusel y cuidados
-   ========================================================================== */
-
-/* Cards informativas (.card-info, estilo compartido más arriba). Los items de
-   las listas traen fondo blanco y color propios de Bootstrap: acá se vuelven
-   transparentes y heredan el color de la card. */
+/* nosotros.html - misión/visión, valores, carrusel y cuidados */
 .card-info .list-group-item {
   background-color: transparent;
   color: inherit;
 }
 
-/* Ícono de cada valor/consejo: cuadradito blanco con el ícono adentro. */
 .card-info .badge {
-  background-color: #fff;
-  color: #013847;
+  background-color: var(--bg-badge);
+  color: var(--texto-badge);
 }
 
-/* Carrusel de cuidados. overflow: hidden hace que las esquinas redondeadas
-   recorten lo que hay adentro. Los colores de flechas e indicadores los pone
-   Bootstrap con data-bs-theme="dark" (en el HTML). */
 .carousel-cuidados {
   border-radius: 16px;
   overflow: hidden;
-  background-color: #DCE8EA;
+  background-color: var(--bg-carousel);
 }
 
-/* Imagen de cada diapositiva: alto fijo para que no ocupe toda la pantalla.
-   object-fit: contain la muestra completa (sin recortar) dentro de ese alto;
-   el ancho se ajusta solo para mantener la proporción. */
 .carousel-cuidados .carousel-img {
   height: 320px;
   max-width: 100%;
@@ -212,52 +170,35 @@ body {
   object-fit: contain;
 }
 
-/* Texto de la diapositiva. Bootstrap lo pone encima de la imagen
-   (position: absolute) y no se leía. Con position: static pasa a ir debajo,
-   sobre el fondo sólido del carrusel. El padding inferior de 55px deja lugar a
-   los indicadores, y los laterales de 70px dejan libres las flechas. */
+/* Bootstrap pone el texto encima de la imagen, con static va debajo */
 .carousel-cuidados .carousel-caption {
   position: static;
   padding: 20px 70px 55px;
-  color: #013847;
+  color: var(--texto-carousel);
 }
 
-/* Imagen de "Higiene y cuidados". Limita el alto; object-fit: cover recorta
-   los bordes para llenar el espacio sin deformarla. */
 .card-info .img-higiene {
   max-height: 325px;
   object-fit: cover;
 }
 
 
-/* ==========================================================================
-   6. CONTACTO (contacto.html) - formulario y mapa
-   ========================================================================== */
-
-/* Padding interno de las dos cards (formulario y ubicación). El color, el
-   redondeo y la sombra vienen del bloque compartido de más arriba. */
+/* contacto.html - formulario y mapa */
 .formulario-contacto,
 .ubicacion {
   padding: 30px;
 }
 
-/* Campos del formulario (.form-control es de Bootstrap): borde blanco de 2px
-   que resalta sobre el fondo de la card, y esquinas redondeadas. */
 .formulario-contacto .form-control {
   border: 2px solid #fff;
   border-radius: 8px;
 }
 
-/* Campo seleccionado: el borde pasa a turquesa. Se quita el resplandor azul
-   que Bootstrap agrega por defecto (box-shadow) para que no compita. */
 .formulario-contacto .form-control:focus {
   border-color: #43C0AF;
   box-shadow: none;
 }
 
-/* Contenedor del mapa. En el HTML lleva position-relative y flex-grow-1 (el
-   iframe se estira para ocupar todo su espacio). min-height evita que se
-   aplaste si el formulario es bajo. overflow: hidden redondea el mapa. */
 .mapa {
   min-height: 300px;
   border-radius: 16px;
@@ -266,32 +207,25 @@ body {
 }
 
 
-/* ==========================================================================
-   7. PIE DE PÁGINA (todas las páginas)
-   Estructura: 3 columnas (nombre, redes, contacto) y una línea de copyright.
-   ========================================================================== */
+/* footer, igual en las 3 páginas */
 .footer {
-  background-color: #013847;
-  color: #E2ECED;
+  background-color: var(--color-primario);
+  color: var(--texto-footer);
   padding: 40px 20px 20px;
 }
 
 .footer h3 {
-  color: #43C0AF;
+  color: var(--color-acento);
 }
 
-/* Bootstrap deja 1rem debajo de cada párrafo; en el footer se achica a 8px. */
 .footer p {
   margin-bottom: 8px;
 }
 
-/* Íconos de redes sociales (lista .nav de Bootstrap). */
 .footer-links {
   margin-top: 20px;
 }
 
-/* Bootstrap le da padding a cada .nav-link; se quita para que el ícono quede
-   pegado a su margen. */
 .footer-links .nav-link {
   padding: 0;
   margin-right: 8px;
@@ -303,52 +237,32 @@ body {
   transition: opacity 0.3s;
 }
 
-/* Al pasar el mouse el ícono se aclara un poco. */
 .footer-links .nav-link:hover img {
   opacity: 0.8;
 }
 
-/* Línea de derechos de autor: separada del resto por una línea turquesa. El
-   centrado y el tamaño chico los dan las clases text-center y small del HTML. */
 .footer-copyright {
   margin-top: 30px;
   padding-top: 20px;
-  border-top: 1px solid #43C0AF;
+  border-top: 1px solid var(--color-acento);
 }
 
 .footer-copyright p {
-  color: #CDA37B;
+  color: var(--color-dorado);
   margin: 0;
 }
 
 
-/* ==========================================================================
-   8. RESPONSIVE
-   Va SIEMPRE al final: las reglas de acá tienen la misma especificidad que las
-   de arriba, y cuando dos reglas empatan gana la que aparece última en el
-   archivo. Si estuviera al principio, las reglas base la pisarían.
-
-   Puntos de quiebre de Bootstrap: sm 576px | md 768px | lg 992px | xl 1200px
-   La mayoría se resuelven en el HTML con clases de Bootstrap:
-     - md : col-md-6, col-md-4, row-cols-md-2  (columnas lado a lado)
-     - lg : navbar-expand-lg                   (la navbar deja de colapsar)
-     - xl : row-cols-xl-4                      (4 profesionales en una fila)
-   El @media de abajo cubre el punto de quiebre chico (celulares).
-   ========================================================================== */
-
-/* Celular (menos de 576px). max-width 575.98px = "hasta justo antes de sm". */
+/* responsive: puntos de quiebre de Bootstrap sm/md/lg/xl, este es el de celular */
 @media (max-width: 575.98px) {
-  /* Navbar más baja y con menos margen lateral. */
   .navbar-principal {
     padding: 12px 16px;
   }
 
-  /* Recuadros con menos padding para ganar espacio útil en pantalla chica. */
   .portada {
     padding: 20px 12px;
   }
 
-  /* Imagen y texto del carrusel más compactos. */
   .carousel-cuidados .carousel-img {
     height: 220px;
   }
