@@ -1,431 +1,270 @@
-/* Estilos generales */
+/* colores en variables para poder cambiarlos todos juntos en modo oscuro */
+:root {
+  /* modo claro */
+  --bg-sitio: url("./assets/img/fondo.avif");
+  --bg-portada: #F1F6F7;
+  --bg-cards: #DCE8EA;
+
+  --texto-principal: #013847;
+  --texto-especialidad: #0B6B5E;
+  --texto-footer: #E2ECED;
+
+  --color-primario: #013847; /* azul oscuro */
+  --color-acento: #43C0AF;   /* turquesa */
+  --color-celeste: #71B5D8;  /* enlaces navbar */
+  --color-dorado: #CDA37B;   /* copyright */
+  --bg-carousel: #DCE8EA;
+  --texto-carousel: #013847;
+  --bg-badge: #ffffff;
+  --texto-badge: #013847;
+}
+
+/* modo oscuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-sitio: url("./assets/img/fondo2.avif");
+    --bg-portada: #1e293b;
+    --bg-cards: #2d3748;
+    --color-primario: #1e2530;
+    --texto-principal: #f8fafc;
+    --texto-footer: #cbd5e1;
+    --bg-carousel: #2d3748;
+    --texto-carousel: #f8fafc;
+    --bg-badge: #1e293b;
+    --texto-badge: #43C0AF;
+  }
+}
+
+/* fuente */
 @font-face {
   font-family: "Nunito Sans";
   src: url("./assets/fonts/NunitoSans.ttf");
+  font-display: swap;
 }
 
 body {
-  margin: 0;
   font-family: "Nunito Sans", sans-serif;
+  background-image: var(--bg-sitio);
+  background-repeat: repeat;
 }
 
-.background-image {
-  background-image: linear-gradient(180deg, rgba(1, 56, 71, 0.45), rgba(1, 56, 71, 0.3)), url("./assets/img/entrada.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-}
 
-/* Estilos para la barra de navegación */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* navbar */
+.navbar-principal {
   padding: 15px 40px;
-  background-color: #013847;
+  background-color: var(--color-primario);
+  margin-bottom: 40px;
 }
 
-.header-logo img {
+.navbar-principal .navbar-brand img {
   width: 200px;
-  height: auto;
 }
 
-.header-menu ul {
-  display: flex;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  gap: 25px;
-}
-
-.header-menu a {
-  text-decoration: none;
-  color: #71B5D8;
+.navbar-principal .nav-link {
+  color: var(--color-celeste);
   font-size: 20px;
   font-weight: bold;
   transition: color 0.3s;
 }
 
-.header-menu a:hover {
-  color: #43C0AF;
+.navbar-principal .nav-link:hover,
+.navbar-principal .nav-link.active {
+  color: var(--color-acento);
 }
 
-/* Estilos para la sección de hero */
-.hero {
-  position: relative;
-  min-height: 520px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-}
 
-.hero-encabezado {
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.hero h1 {
-  color: #fff;
-  font-size: 50px;
-  margin-bottom: 20px;
-}
-
-.hero p {
-  color: #fff;
-  font-size: 30px;
-}
-
-/* Estilos para la sección de presentación */
-.presentacion {
-  padding: 5px 20px;
-}
-
-.presentacion-contenido {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-  background-color: #F5F3EF;
-  padding: 30px;
+/* recuadro de cada sección, se usa en las 3 páginas */
+.portada {
+  background-color: var(--bg-portada);
+  color: var(--texto-principal);
+  padding: 30px 20px;
   border-radius: 16px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-.presentacion-contenido h2 {
-  color: #013847;
-  font-size: 28px;
-  line-height: 1.4;
-  margin-bottom: 30px;
-}
-
-.presentacion-contenido ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.presentacion-contenido li {
-  color: #013847;
-  font-size: 18px;
-  margin-bottom: 15px;
-}
-
-/* Estilos para la sección de servicios */
-.servicios {
-  padding: 5px 20px;
-}
-
-.servicios-contenido {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-  background-color: #F5F3EF;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-.servicios-contenido h2 {
-  color: #013847;
-  font-size: 32px;
-  margin-bottom: 30px;
-}
-
-.servicios-contenido ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.servicios-contenido li {
-  color: #013847;
-  font-size: 18px;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-/* Estilos para la sección de elegínos */
-.eleginos {
-  padding: 5px 20px 60px;
-}
-
-.eleginos-contenido {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-  background-color: #F5F3EF;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-.eleginos-contenido h2 {
-  color: #013847;
-  font-size: 32px;
-  margin-bottom: 30px;
-}
-
-.eleginos-contenido ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.eleginos-contenido li {
-  color: #013847;
-  font-size: 18px;
-  margin-bottom: 15px;
-}
-
-.boton-contacto{
-  width: 15%;
-  padding: 20px;
-  margin-top: 20px;
-  background-color: #013847;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-}
-.boton-contacto:hover {
-  background-color: #43C0AF;
-  
-}
-
-
-/* Grilla de profesionales */
-.profesionales {
-  background-color: #E2ECED;
-  padding: 70px 20px;
-}
-
-.profesionales-contenedor {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.profesionales-encabezado {
-  text-align: center;
   margin-bottom: 40px;
 }
 
-.profesionales-encabezado h2 {
-  color: #013847;
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.profesionales-encabezado p {
-  color: #013847;
-  font-size: 16px;
-}
-
-.profesionales-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-}
-
-.profesional-card {
-  background-color: #fff;
-  padding: 30px 20px;
+/* cards de adentro de un .portada, un tono más oscuro para que se note */
+.card-profesional,
+.card-info,
+.formulario-contacto,
+.ubicacion {
+  background-color: var(--bg-cards);
+  color: var(--texto-principal);
+  border: 0;
   border-radius: 16px;
-  text-align: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-.profesional-card img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
+/* botón principal, usando las variables de Bootstrap */
+.btn-principal {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--color-primario);
+  --bs-btn-border-color: var(--color-primario);
+  --bs-btn-border-radius: 8px;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--color-acento);
+  --bs-btn-hover-border-color: var(--color-acento);
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--color-acento);
+  --bs-btn-active-border-color: var(--color-acento);
 }
 
-.profesional-info h3 {
-  color: #013847;
+
+/* index.html - catálogo de profesionales */
+.card-profesional {
+  padding: 30px 20px;
+}
+
+.card-profesional .card-img-top {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.card-profesional .card-body {
+  padding: 0;
+}
+
+.card-profesional .card-title {
   margin: 15px 0 5px;
 }
 
-.profesional-info span {
-  color: #43C0AF;
+.card-profesional span {
+  color: var(--texto-especialidad);
   font-weight: 700;
   font-size: 14px;
 }
 
-.profesional-info p {
-  color: #013847;
+.card-profesional .card-text {
   font-size: 15px;
   margin-top: 10px;
 }
 
-/* Estilos para la sección de contacto */
-.contacto {
-  background-color: #E2ECED;
-  padding: 60px 20px;
+
+/* nosotros.html - misión/visión, valores, carrusel y cuidados */
+.card-info .list-group-item {
+  background-color: transparent;
+  color: inherit;
 }
 
-.contacto-encabezado {
-  text-align: center;
-  margin-bottom: 40px;
+.card-info .badge {
+  background-color: var(--bg-badge);
+  color: var(--texto-badge);
 }
 
-.contacto-encabezado h2 {
-  color: #013847;
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.contacto-encabezado p {
-  color: #013847;
-}
-
-.contacto-grid {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-
-/* Estilos para el formulario de contacto */
-.formulario-contacto {
-  background-color: #fff;
-  padding: 30px;
+.carousel-cuidados {
   border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  background-color: var(--bg-carousel);
 }
 
-.campo {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 18px;
+.carousel-cuidados .carousel-img {
+  height: 320px;
+  max-width: 100%;
+  margin-top: 20px;
+  border-radius: 16px;
+  object-fit: contain;
 }
 
-.campo label {
-  color: #013847;
-  font-weight: 700;
-  margin-bottom: 7px;
+.carousel-cuidados .carousel-caption {
+  position: static;
+  padding: 20px 70px 55px;
+  color: var(--texto-carousel);
 }
 
-.campo input, .campo textarea {
-  padding: 12px 14px;
-  border: 2px solid #E2ECED;
-  border-radius: 8px;
-  font: inherit;
-  outline: none;
+.card-info .img-higiene {
+  max-height: 325px;
+  object-fit: cover;
 }
 
-.campo input:focus, .campo textarea:focus {
-  border-color: #43C0AF;
-}
 
-.formulario-contacto button {
-  width: 100%;
-  padding: 14px;
-  background-color: #013847;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.formulario-contacto button:hover {
-  background-color: #43C0AF;
-}
-
-/* Estilos para la sección de ubicación */
+/* contacto.html - formulario y mapa */
+.formulario-contacto,
 .ubicacion {
-  text-align: center;
+  padding: 30px;
 }
 
-.ubicacion h2 {
-  color: #013847;
-  font-size: 32px;
-  margin-top: 0;
-  margin-bottom: 10px;
+.formulario-contacto .form-control {
+  border: 2px solid #fff;
+  border-radius: 8px;
 }
 
-.ubicacion p {
-  color: #013847;
-  margin-bottom: 20px;
+.formulario-contacto .form-control:focus {
+  border-color: #43C0AF;
+  box-shadow: none;
 }
 
 .mapa {
-  width: 100%;
+  min-height: 300px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-.mapa iframe {
-  display: block;
-  width: 100%;
-  height: 430px;
-  border: 0;
-}
 
-/* Estilos para el pie de página */
+/* footer */
 .footer {
-  background-color: #013847;
-  color: #E2ECED;
+  background-color: var(--color-primario);
+  color: var(--texto-footer);
   padding: 40px 20px 20px;
 }
 
-.footer-contenido {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 40px;
+.footer h3 {
+  color: var(--color-acento);
 }
 
-.footer-marca h3 {
-  color: #43C0AF;
-  margin-bottom: 10px;
-}
-
-.footer-marca p {
-  color: #E2ECED;
-}
-
-.footer-links {
-  display: inline-block;
-  margin-top: 20px;
-}
-
-.footer-links a {
-  color: #71B5D8;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.footer-links a img {
-  width: 35px;
-  height: 35px;
-  margin-right: 8px;
-}
-
-.footer-links a:hover {
-  color: #43C0AF;
-}
-
-.footer-contacto p {
+.footer p {
   margin-bottom: 8px;
 }
 
+.footer-links {
+  margin-top: 20px;
+}
+
+.footer-links .nav-link {
+  padding: 0;
+  margin-right: 8px;
+}
+
+.footer-links img {
+  width: 35px;
+  height: 35px;
+  transition: opacity 0.3s;
+}
+
+.footer-links .nav-link:hover img {
+  opacity: 0.8;
+}
+
 .footer-copyright {
-  max-width: 1200px;
-  margin: 30px auto 0;
+  margin-top: 30px;
   padding-top: 20px;
-  border-top: 1px solid #43C0AF;
-  text-align: center;
-  color: #CDA37B;
-  font-size: 14px;
+  border-top: 1px solid var(--color-acento);
+}
+
+.footer-copyright p {
+  color: var(--color-dorado);
+  margin: 0;
+}
+
+
+/* responsive para el celular */
+@media (max-width: 575.98px) {
+  .navbar-principal {
+    padding: 12px 16px;
+  }
+
+  .portada {
+    padding: 20px 12px;
+  }
+
+  .carousel-cuidados .carousel-img {
+    height: 220px;
+  }
+
+  .carousel-cuidados .carousel-caption {
+    padding: 15px 45px 50px;
+  }
 }
