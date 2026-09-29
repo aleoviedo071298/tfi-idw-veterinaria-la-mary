@@ -2,19 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <!-- viewport para que se vea bien en el celular -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nosotros</title>
     <link rel="icon" href="./assets/img/Firefly.ico">
-    <!-- Bootstrap por CDN, va antes de nuestro CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <!-- nuestros estilos -->
     <link rel="stylesheet" href="estilos.css">
-    <!-- JS de Bootstrap, lo necesita el menú hamburguesa y el carrusel -->
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- navbar, igual en las 3 páginas, solo cambia el link activo -->
+    <!-- navbar -->
     <header>
         <!-- navbar-expand-lg = desde 992px se muestra en línea, antes usa el menú hamburguesa -->
         <nav class="navbar navbar-expand-lg navbar-principal" data-bs-theme="dark">
@@ -45,7 +41,6 @@
     </header>
     <main>
         <section class="container">
-            <!-- visually-hidden: el h1 no se ve pero queda para accesibilidad/SEO -->
             <h1 class="visually-hidden">Nosotros</h1>
             <!-- Misión, Visión y Valores -->
             <div class="portada">
@@ -70,7 +65,7 @@
                     </div>
                 </div>
 
-                <!-- card de valores, con un ícono (badge) por cada uno -->
+                <!-- card de valores -->
                 <div class="card card-info">
                     <div class="card-body p-4">
                         <h2 class="h3 mb-4 text-center">Valores que nos guían</h2>
@@ -95,7 +90,7 @@
                 </div>
             </div>
 
-            <!-- carrusel de cuidados, avanza solo con data-bs-ride -->
+            <!-- carrusel de cuidados -->
             <div class="portada">
                 <div id="carouselCuidados" class="carousel slide carousel-cuidados" data-bs-theme="dark" data-bs-ride="carousel">
                     <!-- puntitos de abajo -->
@@ -156,7 +151,7 @@
                                     </li>
                                 </ul>
                                 <img src="./assets/img/gato-bano.webp" alt="Peluquería canina" class="d-block w-100 rounded-3 shadow-sm my-4 img-higiene">
-                                <!-- botón que abre WhatsApp con un mensaje ya cargado -->
+                                <!-- botón de WhatsApp  -->
                                 <a href="https://wa.me/5492944579544?text=Hola!%20Quisiera%20pedir%20un%20turno%20para%20peluquería"
                                    target="_blank"
                                    class="btn btn-principal w-100 fw-bold py-2 shadow-sm d-flex align-items-center justify-content-center gap-2">
@@ -192,7 +187,7 @@
             </div>
         </section>
     </main>
-    <!-- footer, igual en las 3 páginas -->
+    <!-- footer -->
     <footer class="footer">
         <div class="container">
             <div class="row">
@@ -204,7 +199,6 @@
                 </div>
 
                 <div class="col-12 col-md-4">
-                    <!-- iconos de redes -->
                     <ul class="nav footer-links">
                         <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/" target="_blank"><img src="./assets/img/facebook.png" alt="Facebook"></a></li>
                         <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/" target="_blank"><img src="./assets/img/instagram.png" alt="Instagram"></a></li>

@@ -2,113 +2,109 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <!-- viewport para que se vea bien en el celular -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./assets/img/Firefly.ico">
-    <!-- Bootstrap por CDN, va antes de nuestro CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <!-- nuestros estilos -->
-    <link rel="stylesheet" href="estilos.css">
-    <!-- JS de Bootstrap, lo necesita el menú hamburguesa y el carrusel -->
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <title>Veterinaria La Mary</title>
+    <link rel="icon" href="./assets/img/Firefly.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilos.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </head>
 <body>
-        <!-- navbar, igual en las 3 páginas, solo cambia el link activo -->
-        <header>
-            <!-- navbar-expand-lg = desde 992px se muestra en línea, antes usa el menú hamburguesa -->
-            <nav class="navbar navbar-expand-lg navbar-principal" data-bs-theme="dark">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="./assets/img/logo.png" alt="Veterinaria La Mary">
-                    </a>
-                    <!-- botón hamburguesa para móvil -->
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <!-- esto es lo que se colapsa en móvil -->
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto gap-4">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="nosotros.html">Nosotros</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contacto.html">Contacto</a>
-                            </li>
-                        </ul>
-                    </div>
+    <!-- navbar -->
+    <header>
+        <!-- navbar-expand-lg = desde 992px se muestra en línea, antes usa el menú hamburguesa -->
+        <nav class="navbar navbar-expand-lg navbar-principal" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="./assets/img/logo.png" alt="Veterinaria La Mary">
+                </a>
+                <!-- botón hamburguesa para móvil -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- esto es lo que se colapsa en móvil -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto gap-4">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="nosotros.html">Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacto.html">Contacto</a>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
-        </header>
+            </div>
+        </nav>
+    </header>
 
-        <main>
-            <!-- sección de bienvenida -->
-            <section class="container">
-                <div class="portada">
-                    <h1>Bienvenidos a Veterinaria La Mary</h1>
-                    <p>En nuestra clínica veterinaria, nos dedicamos a brindar atención de calidad y cuidado amoroso a tus mascotas. Nuestro equipo de profesionales altamente capacitados está comprometido con la salud y el bienestar de tus compañeros peludos.</p>
-                    <p>Ofrecemos una amplia gama de servicios, desde consultas médicas y vacunaciones hasta cirugías y tratamientos especializados. Nos enorgullece proporcionar un ambiente acogedor y seguro para tus mascotas, donde se sientan cómodas y reciban la atención que merecen.</p>
-                    <p>En Veterinaria La Mary, entendemos que tus mascotas son parte de tu familia, y nos esforzamos por brindarles el mejor cuidado posible. Confía en nosotros para mantener a tus amigos peludos felices y saludables. ¡Visítanos y descubre la diferencia de nuestro enfoque compasivo y profesional en el cuidado de tus mascotas!</p>
+    <main>
+        <!-- sección de bienvenida -->
+        <section class="container">
+            <div class="portada">
+                <h1>Bienvenidos a Veterinaria La Mary</h1>
+                <p>En nuestra clínica veterinaria, nos dedicamos a brindar atención de calidad y cuidado amoroso a tus mascotas. Nuestro equipo de profesionales altamente capacitados está comprometido con la salud y el bienestar de tus compañeros peludos.</p>
+                <p>Ofrecemos una amplia gama de servicios, desde consultas médicas y vacunaciones hasta cirugías y tratamientos especializados. Nos enorgullece proporcionar un ambiente acogedor y seguro para tus mascotas, donde se sientan cómodas y reciban la atención que merecen.</p>
+                <p>En Veterinaria La Mary, entendemos que tus mascotas son parte de tu familia, y nos esforzamos por brindarles el mejor cuidado posible. Confía en nosotros para mantener a tus amigos peludos felices y saludables. ¡Visítanos y descubre la diferencia de nuestro enfoque compasivo y profesional en el cuidado de tus mascotas!</p>
+            </div>
+        </section>
+        <!-- grilla de profesionales -->
+        <section class="container">
+            <div class="portada text-center">
+                <div class="mb-5">
+                    <h2 class="mb-0">Nuestros Profesionales</h2>
                 </div>
-            </section>
-            <!-- catálogo de profesionales, con grilla de Bootstrap -->
-            <section class="container">
-                <div class="portada text-center">
-                    <div class="mb-5">
-                        <h2 class="mb-0">Nuestros Profesionales</h2>
-                    </div>
-                    <!-- 1 card por fila en celular, 2 desde md, 4 desde xl -->
-                    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
-                        <!-- card: foto, nombre, especialidad y descripción -->
-                        <div class="col">
-                            <div class="card card-profesional h-100">
-                                <img src="./assets/img/veterinaria2.jpg" class="card-img-top" alt="Dra. Luciana Mansilla">
-                                <div class="card-body">
-                                    <h3 class="card-title">Dra. Mansilla Luciana</h3>
-                                    <span>Medicina Clínica</span>
-                                    <p class="card-text">Especialista en atención clínica y medicina preventiva de pequeños animales.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-profesional h-100">
-                                <img src="./assets/img/veterinaria1.jpg" class="card-img-top" alt="Dr. Oviedo Alejandro">
-                                <div class="card-body">
-                                    <h3 class="card-title">Dr. Oviedo Alejandro</h3>
-                                    <span>Cirugía Veterinaria</span>
-                                    <p class="card-text">Profesional dedicado a cirugía general y atención integral de perros y gatos.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-profesional h-100">
-                                <img src="./assets/img/veterinaria3.webp" class="card-img-top" alt="Dra. Ayelen Boock">
-                                <div class="card-body">
-                                    <h3 class="card-title">Dra. Ayelen Boock</h3>
-                                    <span>Dermatología</span>
-                                    <p class="card-text">Atención y diagnóstico de enfermedades dermatológicas en animales de compañía.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-profesional h-100">
-                                <img src="./assets/img/veterinaria4.jpg" class="card-img-top" alt="Dra. Aylen Kogut">
-                                <div class="card-body">
-                                    <h3 class="card-title">Dra. Aylen Kogut</h3>
-                                    <span>Peluquería</span>
-                                    <p class="card-text">Peluquera profesional especializada en el cuidado y estética de mascotas, brindando servicios de corte, baño y estilizado.</p>
-                                </div>
+                <!-- 1 card por fila en celular, 2 desde md, 4 desde xl -->
+                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
+                    <!-- card: foto, nombre, especialidad y descripción -->
+                    <div class="col">
+                        <div class="card card-profesional h-100">
+                            <img src="./assets/img/veterinaria2.jpg" class="card-img-top" alt="Dra. Luciana Mansilla">
+                            <div class="card-body">
+                                <h3 class="card-title">Dra. Mansilla Luciana</h3>
+                                <span>Medicina Clínica</span>
+                                <p class="card-text">Especialista en atención clínica y medicina preventiva de pequeños animales.</p>
                             </div>
                         </div>
                     </div>
+                    <div class="col">
+                        <div class="card card-profesional h-100">
+                            <img src="./assets/img/veterinaria1.jpg" class="card-img-top" alt="Dr. Oviedo Alejandro">
+                            <div class="card-body">
+                                <h3 class="card-title">Dr. Oviedo Alejandro</h3>
+                                <span>Cirugía Veterinaria</span>
+                                <p class="card-text">Profesional dedicado a cirugía general y atención integral de perros y gatos.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-profesional h-100">
+                            <img src="./assets/img/veterinaria3.webp" class="card-img-top" alt="Dra. Ayelen Boock">
+                            <div class="card-body">
+                                <h3 class="card-title">Dra. Ayelen Boock</h3>
+                                <span>Dermatología</span>
+                                <p class="card-text">Atención y diagnóstico de enfermedades dermatológicas en animales de compañía.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-profesional h-100">
+                            <img src="./assets/img/veterinaria4.jpg" class="card-img-top" alt="Dra. Aylen Kogut">
+                            <div class="card-body">
+                                <h3 class="card-title">Dra. Aylen Kogut</h3>
+                                <span>Peluquería</span>
+                                <p class="card-text">Peluquera profesional especializada en el cuidado y estética de mascotas, brindando servicios de corte, baño y estilizado.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </section>
-        </main>
+            </div>
+        </section>
+    </main>
 
-    <!-- footer, igual en las 3 páginas -->
+    <!-- footer -->
     <footer class="footer">
         <div class="container">
             <div class="row">
@@ -120,7 +116,6 @@
                 </div>
 
                 <div class="col-12 col-md-4">
-                    <!-- iconos de redes -->
                     <ul class="nav footer-links">
                         <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/" target="_blank"><img src="./assets/img/facebook.png" alt="Facebook"></a></li>
                         <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/" target="_blank"><img src="./assets/img/instagram.png" alt="Instagram"></a></li>
