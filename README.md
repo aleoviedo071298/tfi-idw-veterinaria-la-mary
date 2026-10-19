@@ -71,7 +71,7 @@ assets/
 | `≥ 992px` (`lg`) | La navbar deja de colapsar y muestra los enlaces en línea; en las páginas de gestión la tabla y el formulario se ubican lado a lado (`col-lg-7` / `col-lg-5`) |
 | `≥ 1200px` (`xl`) | Los 4 profesionales se muestran en una sola fila (`row-cols-xl-4`) |
 
-## 3era entrega 20-10-2026
+## 3era entrega 23-10-2026
 
 Se agregaron las dos páginas de administración, con todo el JavaScript en archivos externos dentro de `js/`. Las funciones de manipulación DOM que se repiten en las dos páginas están en `js/utilidades.js` (`borrarHijos`, `crearCelda` y `crearBoton`).
 
