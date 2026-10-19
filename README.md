@@ -9,12 +9,14 @@ Pagina web para la clínica veterinaria **Veterinaria La Mary**
 
 - Oviedo, Alejandro
 - Mansilla, Luciana
-- Boock, Ayelen 
+- Boock, Ayelen
 - Kogut, Aylen
 
 ## Tecnologias utilizadas.
 
-HTML5, CSS3, Bootstrap 5.3 (por CDN), JavaScript, API LocalStorage, Vite.
+HTML5, CSS3, Bootstrap 5.3 (por CDN), JavaScript, API DOM, API LocalStorage, Vite.
+
+Sin librerías de JavaScript: todo se resuelve con JavaScript y la API DOM del navegador.
 
 ## Como ejecutarlo "Comandelis".
 
@@ -23,13 +25,33 @@ npm install
 npx vite
 ```
 
+## Estructura del proyecto.
+
+```
+index.html          portada con el catálogo de profesionales
+nosotros.html       información institucional
+contacto.html       formulario de contacto y mapa
+mascotas.html       gestión de Mascotas
+veterinarios.html   gestión de Veterinarios
+estilos.css         diseño propio y variables de color
+js/
+  utilidades.js     funciones de manipulación DOM compartidas
+  semilla.js        veterinarios de ejemplo para la primera carga
+  portada.js        catálogo de profesionales de index.html
+  mascotas.js       ABML de Mascotas
+  veterinarios.js   ABML de Veterinarios
+assets/
+  fonts/            tipografía Nunito Sans
+  img/              logo, fotos e iconos
+```
+
 ## 1era entrega 8-9-2026
 
 - [x] Página de Inicio  (`index.html`)
 - [x] Página de Información Institucional (`nosotros.html`)
 - [x] Página de Contacto (`contacto.html`)
 
-## 2da entrega
+## 2da entrega 29-9-2026
 
 - [x] Bootstrap 5.3 integrado en las tres páginas (CSS y JS por CDN), combinado con diseño propio en `estilos.css`
 - [x] Barra de navegación responsiva (`navbar-expand-lg`): menú hamburguesa en móvil y acceso a todas las páginas
@@ -49,9 +71,9 @@ npx vite
 | `≥ 992px` (`lg`) | La navbar deja de colapsar y muestra los enlaces en línea; en las páginas de gestión la tabla y el formulario se ubican lado a lado (`col-lg-7` / `col-lg-5`) |
 | `≥ 1200px` (`xl`) | Los 4 profesionales se muestran en una sola fila (`row-cols-xl-4`) |
 
-## 3era entrega
+## 3era entrega 20-10-2026
 
-Se agregaron las dos páginas de administración, con todo el JavaScript en archivos externos dentro de `js/`.
+Se agregaron las dos páginas de administración, con todo el JavaScript en archivos externos dentro de `js/`. Las funciones de manipulación DOM que se repiten en las dos páginas están en `js/utilidades.js` (`borrarHijos`, `crearCelda` y `crearBoton`).
 
 - [x] Página de gestión de Mascotas (`mascotas.html` + `js/mascotas.js`)
 - [x] Página de gestión de Veterinarios (`veterinarios.html` + `js/veterinarios.js`)
