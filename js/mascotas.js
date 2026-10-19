@@ -49,17 +49,18 @@ function render() {
 
     mascotasAMostrar.forEach((mascota) => {
         // si la mascota no tiene foto cargada mostramos el logo
-        const imagen = mascota.imagenMascota ? mascota.imagenMascota : './assets/img/logo.png';
+        const imagen = imagenSegura(mascota.imagenMascota);
+        const nombre = escaparHtml(mascota.nombreMascota);
 
         lista.innerHTML += `
             <tr>
-                <td><img class="img-tabla" src="${imagen}" alt="${mascota.nombreMascota}"></td>
-                <td>${mascota.nombreMascota}</td>
-                <td>${mascota.nombreDuenio}</td>
-                <td>${mascota.especie}</td>
-                <td>${mascota.color}</td>
-                <td>${mascota.edad} años</td>
-                <td>${mascota.peso} kg</td>
+                <td><img class="img-tabla" src="${imagen}" alt="${nombre}"></td>
+                <td>${nombre}</td>
+                <td>${escaparHtml(mascota.nombreDuenio)}</td>
+                <td>${escaparHtml(mascota.especie)}</td>
+                <td>${escaparHtml(mascota.color)}</td>
+                <td>${escaparHtml(mascota.edad)} años</td>
+                <td>${escaparHtml(mascota.peso)} kg</td>
                 <td class="text-center">
                     <div class="btn-group btn-group-sm" role="group">
                         <button class="btn btn-warning" onclick="prepararEdicion('${mascota.idMascota}')">✏️ Editar</button>

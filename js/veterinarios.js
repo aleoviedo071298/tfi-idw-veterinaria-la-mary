@@ -51,14 +51,15 @@ function render() {
 
     veterinariosAMostrar.forEach((veterinario) => {
         // si el veterinario no tiene foto cargada mostramos el logo
-        const imagen = veterinario.imagenVeterinario ? veterinario.imagenVeterinario : './assets/img/logo.png';
+        const imagen = imagenSegura(veterinario.imagenVeterinario);
+        const nombre = escaparHtml(veterinario.nombre);
 
         lista.innerHTML += `
             <tr>
-                <td><img class="img-tabla" src="${imagen}" alt="${veterinario.nombre}"></td>
-                <td>${veterinario.matricula}</td>
-                <td>${veterinario.nombre}</td>
-                <td>${veterinario.especializacion}</td>
+                <td><img class="img-tabla" src="${imagen}" alt="${nombre}"></td>
+                <td>${escaparHtml(veterinario.matricula)}</td>
+                <td>${nombre}</td>
+                <td>${escaparHtml(veterinario.especializacion)}</td>
                 <td class="fw-bold">${formatearMoneda.format(veterinario.valorConsulta)}</td>
                 <td class="text-center">
                     <div class="btn-group btn-group-sm" role="group">

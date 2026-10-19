@@ -19,16 +19,17 @@ function renderPortada() {
 
     profesionales.forEach((veterinario) => {
         // si el veterinario no tiene foto cargada mostramos el logo
-        const imagen = veterinario.imagenVeterinario ? veterinario.imagenVeterinario : './assets/img/logo.png';
+        const imagen = imagenSegura(veterinario.imagenVeterinario);
+        const nombre = escaparHtml(veterinario.nombre);
 
         contenedorProfesionales.innerHTML += `
             <div class="col">
                 <div class="card card-profesional h-100">
-                    <img src="${imagen}" class="card-img-top" alt="${veterinario.nombre}">
+                    <img src="${imagen}" class="card-img-top" alt="${nombre}">
                     <div class="card-body">
-                        <h3 class="card-title">${veterinario.nombre}</h3>
-                        <span>${veterinario.especializacion}</span>
-                        <p class="card-text mb-0">M.P. N° ${veterinario.matricula}</p>
+                        <h3 class="card-title">${nombre}</h3>
+                        <span>${escaparHtml(veterinario.especializacion)}</span>
+                        <p class="card-text mb-0">M.P. N° ${escaparHtml(veterinario.matricula)}</p>
                         <p class="card-text fw-bold">Consulta: ${formatearMoneda.format(veterinario.valorConsulta)}</p>
                     </div>
                 </div>
