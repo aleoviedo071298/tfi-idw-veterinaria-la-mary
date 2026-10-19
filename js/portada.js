@@ -4,37 +4,50 @@ const contenedorProfesionales = document.getElementById('contenedor-profesionale
 
 const formatearMoneda = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' });
 
+// crea un elemento con una clase y un nodo de texto adentro
+function crearTexto(etiqueta, clases, texto) {
+    const elemento = document.createElement(etiqueta);
+    elemento.className = clases;
+    elemento.appendChild(document.createTextNode(texto));
+    return elemento;
+}
+
 function renderPortada() {
+    // limpiamos antes de recorrer para no duplicar las cards
+    borrarHijos(contenedorProfesionales);
+
     if (profesionales.length === 0) {
-        contenedorProfesionales.innerHTML = `
-            <div class="col-12 text-center py-4">
-                <p class="fs-5 mb-0">Próximamente conocerás a nuestro staff médico.</p>
-            </div>
-        `;
+        const aviso = document.createElement('div');
+        aviso.className = 'col-12 text-center py-4';
+        aviso.appendChild(crearTexto('p', 'fs-5 mb-0', 'Próximamente conocerás a nuestro staff médico.'));
+        contenedorProfesionales.appendChild(aviso);
         return;
     }
 
-    // limpiamos antes de recorrer para no duplicar las cards
-    contenedorProfesionales.innerHTML = '';
-
     profesionales.forEach((veterinario) => {
         // si el veterinario no tiene foto cargada mostramos el logo
-        const imagen = imagenSegura(veterinario.imagenVeterinario);
-        const nombre = escaparHtml(veterinario.nombre);
+        const imagen = document.createElement('img');
+        imagen.className = 'card-img-top';
+        imagen.src = veterinario.imagenVeterinario ? veterinario.imagenVeterinario : './assets/img/logo.png';
+        imagen.alt = veterinario.nombre;
 
-        contenedorProfesionales.innerHTML += `
-            <div class="col">
-                <div class="card card-profesional h-100">
-                    <img src="${imagen}" class="card-img-top" alt="${nombre}">
-                    <div class="card-body">
-                        <h3 class="card-title">${nombre}</h3>
-                        <span>${escaparHtml(veterinario.especializacion)}</span>
-                        <p class="card-text mb-0">M.P. N° ${escaparHtml(veterinario.matricula)}</p>
-                        <p class="card-text fw-bold">Consulta: ${formatearMoneda.format(veterinario.valorConsulta)}</p>
-                    </div>
-                </div>
-            </div>
-        `;
+        const cuerpo = document.createElement('div');
+        cuerpo.className = 'card-body';
+        cuerpo.appendChild(crearTexto('h3', 'card-title', veterinario.nombre));
+        cuerpo.appendChild(crearTexto('span', '', veterinario.especializacion));
+        cuerpo.appendChild(crearTexto('p', 'card-text mb-0', 'M.P. N° ' + veterinario.matricula));
+        cuerpo.appendChild(crearTexto('p', 'card-text fw-bold', 'Consulta: ' + formatearMoneda.format(veterinario.valorConsulta)));
+
+        const card = document.createElement('div');
+        card.className = 'card card-profesional h-100';
+        card.appendChild(imagen);
+        card.appendChild(cuerpo);
+
+        const columna = document.createElement('div');
+        columna.className = 'col';
+        columna.appendChild(card);
+
+        contenedorProfesionales.appendChild(columna);
     });
 }
 

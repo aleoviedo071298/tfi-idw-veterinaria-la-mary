@@ -61,6 +61,7 @@ Se agregaron las dos páginas de administración, con todo el JavaScript en arch
 - [x] El identificador se genera solo en el alta con `crypto.randomUUID()`; el usuario no lo ingresa (va en un `input type="hidden"`)
 - [x] Al cargar cada página se listan los datos ya guardados en LocalStorage
 - [x] Los datos del formulario se capturan con `FormData`, se validan con los atributos de HTML5 (`required`, `min`, `max`, `step`, `type`) y se arman como objetos JavaScript antes de guardarlos
+- [x] Las filas de las tablas y las cards de la portada se arman con manipulación DOM (`createElement`, `createTextNode`, `appendChild`, `removeChild`) y no con `innerHTML`, como indica la Unidad 5. Los botones de cada fila registran su manejador con `addEventListener`
 
 ### Mascotas
 

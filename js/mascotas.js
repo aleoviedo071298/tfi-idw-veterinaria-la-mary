@@ -37,38 +37,48 @@ function render() {
     const mascotasAMostrar = filtrarMascotas();
 
     // limpiamos antes de recorrer para no duplicar filas
-    lista.innerHTML = '';
+    borrarHijos(lista);
 
     if (mascotasAMostrar.length === 0) {
-        lista.innerHTML = `
-            <tr>
-                <td colspan="8" class="text-center py-4">No hay mascotas para mostrar.</td>
-            </tr>
-        `;
+        const fila = document.createElement('tr');
+        const celda = crearCelda('No hay mascotas para mostrar.');
+        celda.className = 'text-center py-4';
+        celda.colSpan = 8;
+        fila.appendChild(celda);
+        lista.appendChild(fila);
     }
 
     mascotasAMostrar.forEach((mascota) => {
-        // si la mascota no tiene foto cargada mostramos el logo
-        const imagen = imagenSegura(mascota.imagenMascota);
-        const nombre = escaparHtml(mascota.nombreMascota);
+        const fila = document.createElement('tr');
 
-        lista.innerHTML += `
-            <tr>
-                <td><img class="img-tabla" src="${imagen}" alt="${nombre}"></td>
-                <td>${nombre}</td>
-                <td>${escaparHtml(mascota.nombreDuenio)}</td>
-                <td>${escaparHtml(mascota.especie)}</td>
-                <td>${escaparHtml(mascota.color)}</td>
-                <td>${escaparHtml(mascota.edad)} años</td>
-                <td>${escaparHtml(mascota.peso)} kg</td>
-                <td class="text-center">
-                    <div class="btn-group btn-group-sm" role="group">
-                        <button class="btn btn-warning" onclick="prepararEdicion('${mascota.idMascota}')">✏️ Editar</button>
-                        <button class="btn btn-danger" onclick="eliminarMascota('${mascota.idMascota}')">🗑️ Borrar</button>
-                    </div>
-                </td>
-            </tr>
-        `;
+        // si la mascota no tiene foto cargada mostramos el logo
+        const imagen = document.createElement('img');
+        imagen.className = 'img-tabla';
+        imagen.src = mascota.imagenMascota ? mascota.imagenMascota : './assets/img/logo.png';
+        imagen.alt = mascota.nombreMascota;
+
+        const celdaImagen = document.createElement('td');
+        celdaImagen.appendChild(imagen);
+        fila.appendChild(celdaImagen);
+
+        fila.appendChild(crearCelda(mascota.nombreMascota));
+        fila.appendChild(crearCelda(mascota.nombreDuenio));
+        fila.appendChild(crearCelda(mascota.especie));
+        fila.appendChild(crearCelda(mascota.color));
+        fila.appendChild(crearCelda(mascota.edad + ' años'));
+        fila.appendChild(crearCelda(mascota.peso + ' kg'));
+
+        const grupo = document.createElement('div');
+        grupo.className = 'btn-group btn-group-sm';
+        grupo.appendChild(crearBoton('✏️ Editar', 'btn btn-warning', () => prepararEdicion(mascota.idMascota)));
+        grupo.appendChild(crearBoton('🗑️ Borrar', 'btn btn-danger', () => eliminarMascota(mascota.idMascota)));
+
+        const celdaAcciones = document.createElement('td');
+        celdaAcciones.className = 'text-center';
+        celdaAcciones.appendChild(grupo);
+        fila.appendChild(celdaAcciones);
+
+        lista.appendChild(fila);
     });
 
     // el total siempre cuenta todas las mascotas, no las filtradas
@@ -88,7 +98,8 @@ document.getElementById('imagenMascota').addEventListener('change', (e) => {
         const img = new Image();
         img.onload = () => {
             const MAX_LADO = 200;
-            let { width, height } = img;
+            let width = img.width;
+            let height = img.height;
 
             if (width > height && width > MAX_LADO) {
                 height *= MAX_LADO / width;
@@ -175,7 +186,7 @@ function prepararEdicion(id) {
     btnGuardar.textContent = "Guardar cambios";
     btnCancelar.classList.remove('d-none');
 
-    formulario.scrollIntoView({ behavior: 'smooth' });
+    formulario.scrollIntoView();
 }
 
 function eliminarMascota(id) {

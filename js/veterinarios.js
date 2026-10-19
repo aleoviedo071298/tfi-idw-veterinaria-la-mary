@@ -39,36 +39,49 @@ function render() {
     const veterinariosAMostrar = filtrarVeterinarios();
 
     // limpiamos antes de recorrer para no duplicar filas
-    lista.innerHTML = '';
+    borrarHijos(lista);
 
     if (veterinariosAMostrar.length === 0) {
-        lista.innerHTML = `
-            <tr>
-                <td colspan="6" class="text-center py-4">No hay veterinarios para mostrar.</td>
-            </tr>
-        `;
+        const fila = document.createElement('tr');
+        const celda = crearCelda('No hay veterinarios para mostrar.');
+        celda.className = 'text-center py-4';
+        celda.colSpan = 6;
+        fila.appendChild(celda);
+        lista.appendChild(fila);
     }
 
     veterinariosAMostrar.forEach((veterinario) => {
-        // si el veterinario no tiene foto cargada mostramos el logo
-        const imagen = imagenSegura(veterinario.imagenVeterinario);
-        const nombre = escaparHtml(veterinario.nombre);
+        const fila = document.createElement('tr');
 
-        lista.innerHTML += `
-            <tr>
-                <td><img class="img-tabla" src="${imagen}" alt="${nombre}"></td>
-                <td>${escaparHtml(veterinario.matricula)}</td>
-                <td>${nombre}</td>
-                <td>${escaparHtml(veterinario.especializacion)}</td>
-                <td class="fw-bold">${formatearMoneda.format(veterinario.valorConsulta)}</td>
-                <td class="text-center">
-                    <div class="btn-group btn-group-sm" role="group">
-                        <button class="btn btn-warning" onclick="prepararEdicion('${veterinario.idVeterinario}')">✏️ Editar</button>
-                        <button class="btn btn-danger" onclick="eliminarVeterinario('${veterinario.idVeterinario}')">🗑️ Borrar</button>
-                    </div>
-                </td>
-            </tr>
-        `;
+        // si el veterinario no tiene foto cargada mostramos el logo
+        const imagen = document.createElement('img');
+        imagen.className = 'img-tabla';
+        imagen.src = veterinario.imagenVeterinario ? veterinario.imagenVeterinario : './assets/img/logo.png';
+        imagen.alt = veterinario.nombre;
+
+        const celdaImagen = document.createElement('td');
+        celdaImagen.appendChild(imagen);
+        fila.appendChild(celdaImagen);
+
+        fila.appendChild(crearCelda(veterinario.matricula));
+        fila.appendChild(crearCelda(veterinario.nombre));
+        fila.appendChild(crearCelda(veterinario.especializacion));
+
+        const celdaValor = crearCelda(formatearMoneda.format(veterinario.valorConsulta));
+        celdaValor.className = 'fw-bold';
+        fila.appendChild(celdaValor);
+
+        const grupo = document.createElement('div');
+        grupo.className = 'btn-group btn-group-sm';
+        grupo.appendChild(crearBoton('✏️ Editar', 'btn btn-warning', () => prepararEdicion(veterinario.idVeterinario)));
+        grupo.appendChild(crearBoton('🗑️ Borrar', 'btn btn-danger', () => eliminarVeterinario(veterinario.idVeterinario)));
+
+        const celdaAcciones = document.createElement('td');
+        celdaAcciones.className = 'text-center';
+        celdaAcciones.appendChild(grupo);
+        fila.appendChild(celdaAcciones);
+
+        lista.appendChild(fila);
     });
 
     // el total siempre cuenta todos los veterinarios, no los filtrados
@@ -88,7 +101,8 @@ document.getElementById('imagenVeterinario').addEventListener('change', (e) => {
         const img = new Image();
         img.onload = () => {
             const MAX_LADO = 250;
-            let { width, height } = img;
+            let width = img.width;
+            let height = img.height;
 
             if (width > height && width > MAX_LADO) {
                 height *= MAX_LADO / width;
@@ -171,7 +185,7 @@ function prepararEdicion(id) {
     btnGuardar.textContent = "Guardar cambios";
     btnCancelar.classList.remove('d-none');
 
-    formulario.scrollIntoView({ behavior: 'smooth' });
+    formulario.scrollIntoView();
 }
 
 function eliminarVeterinario(id) {

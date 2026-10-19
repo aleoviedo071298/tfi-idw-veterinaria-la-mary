@@ -1,23 +1,24 @@
-// funciones compartidas por las páginas que arman HTML con template literals
+// funciones de manipulación DOM que se repiten en las páginas de administración
 
-const CARACTERES_HTML = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#39;'
-};
-
-// sin esto un dato con comillas o con < rompe la fila que se está armando,
-// por ejemplo una mascota llamada Don "Pepe"
-function escaparHtml(valor) {
-    return String(valor).replace(/[&<>"']/g, (caracter) => CARACTERES_HTML[caracter]);
+// deja un elemento sin hijos, como la función borrarHijos de los ejemplos de clase
+function borrarHijos(elemento) {
+    while (elemento.firstChild) {
+        elemento.removeChild(elemento.firstChild);
+    }
 }
 
-// solo dejamos pasar las fotos que genera el canvas y las imágenes del propio sitio
-function imagenSegura(valor) {
-    const esValida = typeof valor === 'string'
-        && (valor.startsWith('data:image/') || valor.startsWith('./assets/'));
+// crea un <td> con un nodo de texto adentro
+function crearCelda(texto) {
+    const celda = document.createElement('td');
+    celda.appendChild(document.createTextNode(texto));
+    return celda;
+}
 
-    return esValida ? escaparHtml(valor) : './assets/img/logo.png';
+// crea un botón de la columna Acciones y le registra el manejador del click
+function crearBoton(texto, clases, manejador) {
+    const boton = document.createElement('button');
+    boton.className = clases;
+    boton.appendChild(document.createTextNode(texto));
+    boton.addEventListener('click', manejador);
+    return boton;
 }
