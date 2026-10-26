@@ -8,3 +8,6 @@ Thumbs.db
 
 # Consigna del TFI (no es parte del sitio)
 2026 - Trabajo Final Integrador*.pdf
+
+# configuracion local del editor
+.claude/

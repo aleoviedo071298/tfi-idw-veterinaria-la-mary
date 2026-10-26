@@ -17,6 +17,8 @@
   --texto-carousel: #013847;
   --bg-badge: #ffffff;
   --texto-badge: #013847;
+  --borde-input: #ffffff;
+  --bg-rayado: rgba(0, 0, 0, 0.04); /* filas impares de las tablas */
 }
 
 /* modo oscuro */
@@ -27,11 +29,14 @@
     --bg-cards: #2d3748;
     --color-primario: #1e2530;
     --texto-principal: #f8fafc;
+    --texto-especialidad: #43C0AF; /* el verde oscuro del modo claro no contrasta sobre las cards oscuras */
     --texto-footer: #cbd5e1;
     --bg-carousel: #2d3748;
     --texto-carousel: #f8fafc;
     --bg-badge: #1e293b;
     --texto-badge: #43C0AF;
+    --borde-input: #475569;
+    --bg-rayado: rgba(255, 255, 255, 0.06);
   }
 }
 
@@ -87,6 +92,7 @@ body {
 .card-profesional,
 .card-info,
 .formulario-contacto,
+.formulario-admin,
 .ubicacion {
   background-color: var(--bg-cards);
   color: var(--texto-principal);
@@ -112,12 +118,15 @@ body {
 
 /* index.html - catálogo de profesionales */
 .card-profesional {
+  max-width: 300px; /* para que una card sola no quede gigante */
+  margin: 0 auto;
   padding: 30px 20px;
 }
 
 .card-profesional .card-img-top {
-  width: 100px;
-  height: 100px;
+  display: block;
+  width: 120px;
+  height: 120px;
   margin: 0 auto;
   border-radius: 50%;
   object-fit: cover;
@@ -132,9 +141,11 @@ body {
 }
 
 .card-profesional span {
+  display: block;
+  margin-top: 5px;
   color: var(--texto-especialidad);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .card-profesional .card-text {
@@ -180,22 +191,64 @@ body {
 }
 
 
-/* contacto.html - formulario y mapa */
+/* formularios, se usan en contacto.html y en las páginas de administración */
 .formulario-contacto,
+.formulario-admin,
 .ubicacion {
   padding: 30px;
 }
 
-.formulario-contacto .form-control {
-  border: 2px solid #fff;
+.formulario-contacto .form-control,
+.formulario-admin .form-control,
+.formulario-admin .form-select,
+.buscador {
+  border: 2px solid var(--borde-input);
   border-radius: 8px;
 }
 
-.formulario-contacto .form-control:focus {
-  border-color: #43C0AF;
+.formulario-contacto .form-control:focus,
+.formulario-admin .form-control:focus,
+.formulario-admin .form-select:focus,
+.buscador:focus {
+  border-color: var(--color-acento);
   box-shadow: none;
 }
 
+/* el $ que va pegado al valor de consulta */
+.formulario-admin .input-group-text {
+  border: 2px solid var(--borde-input);
+  background-color: var(--bg-portada);
+  color: var(--texto-principal);
+  font-weight: 700;
+}
+
+
+/* mascotas.html y veterinarios.html - tablas de administración */
+/* las tablas de Bootstrap traen sus colores propios, los pisamos con las variables del sitio */
+.tabla-admin {
+  --bs-table-color: var(--texto-principal);
+  --bs-table-bg: transparent;
+  --bs-table-striped-color: var(--texto-principal);
+  --bs-table-striped-bg: var(--bg-rayado);
+  --bs-table-hover-color: var(--texto-principal);
+  --bs-table-hover-bg: rgba(67, 192, 175, 0.18);
+  --bs-table-border-color: var(--color-acento);
+}
+
+.img-tabla {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.badge-total {
+  background-color: var(--bg-badge);
+  color: var(--texto-badge);
+}
+
+
+/* contacto.html - mapa */
 .mapa {
   min-height: 300px;
   border-radius: 16px;
