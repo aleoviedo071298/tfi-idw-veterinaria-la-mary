@@ -1,5 +1,4 @@
-// veterinarios de ejemplo, se guardan una sola vez la primera vez que se abre el sitio
-// así la portada nunca queda vacía y se pueden editar desde veterinarios.html
+// veterinarios de ejemplo.
 const VETERINARIOS_INICIALES = [
     {
         idVeterinario: crypto.randomUUID(),
@@ -35,8 +34,8 @@ const VETERINARIOS_INICIALES = [
     }
 ];
 
-// getItem devuelve null solo si la clave nunca se creó, así no volvemos a sembrar
-// cuando el usuario borró todos los veterinarios a propósito
+
+// Si no hay veterinarios en el almacenamiento local, se guardan los de ejemplo para que no este vacia la grilla de profesionales.
 if (localStorage.getItem('veterinarios') === null) {
     localStorage.setItem('veterinarios', JSON.stringify(VETERINARIOS_INICIALES));
 }
