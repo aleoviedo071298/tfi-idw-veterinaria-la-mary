@@ -1,3 +1,7 @@
+if (!estaLogueado()) {
+    window.location.href = 'login.html';
+}
+
 // los veterinarios se guardan en localStorage bajo la clave "veterinarios"
 let veterinarios = JSON.parse(localStorage.getItem('veterinarios')) || [];
 

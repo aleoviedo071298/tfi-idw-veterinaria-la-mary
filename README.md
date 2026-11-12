@@ -10,20 +10,29 @@ Pagina web para la clínica veterinaria **Veterinaria La Mary**
 - Oviedo, Alejandro
 - Mansilla, Luciana
 - Boock, Ayelen
-- Kogut, Aylen
 
 ## Tecnologias utilizadas.
 
-HTML5, CSS3, Bootstrap 5.3 (por CDN), JavaScript, API DOM, API LocalStorage, Vite.
+HTML5, CSS3, Bootstrap 5.3 (por CDN), JavaScript, API DOM, API LocalStorage, API SessionStorage, `fetch`, Vite.
 
-Sin librerías de JavaScript: todo se resuelve con JavaScript y la API DOM del navegador.
+Sin librerías de JavaScript: todo se resuelve con JavaScript y la API DOM del navegador. Para el inicio de sesión se usa la API de prueba [DummyJSON](https://dummyjson.com/docs/auth).
 
-## Como ejecutarlo "Comandelis".
+## Cómo ejecutarlo
 
 ```bash
 npm install
 npx vite
 ```
+
+Después abrir la dirección que muestra Vite (por defecto `http://localhost:5173`).
+
+## Usuario de prueba
+
+Las páginas de administración piden iniciar sesión. El login usa la API pública de prueba DummyJSON, así que **hace falta conexión a internet**. Usuario que se puede usar:
+
+| Usuario | Contraseña |
+|---|---|
+| `emilys` | `emilyspass` |
 
 ## Estructura del proyecto.
 
@@ -31,15 +40,25 @@ npx vite
 index.html          portada con el catálogo de profesionales
 nosotros.html       información institucional
 contacto.html       formulario de contacto y mapa
+login.html          inicio de sesión del personal
+panelAdmin.html     panel con acceso a cada módulo de gestión
 mascotas.html       gestión de Mascotas
 veterinarios.html   gestión de Veterinarios
+turnos.html         gestión de Turnos
+historia_clinica.html  historia clínica de cada mascota
 estilos.css         diseño propio y variables de color
 js/
-  utilidades.js     funciones de manipulación DOM compartidas
+  utilidades.js     funciones de manipulación DOM compartidas (borrarHijos, crearCelda, crearBoton, crearOpcion)
   semilla.js        veterinarios de ejemplo para la primera carga
   portada.js        catálogo de profesionales de index.html
+  sesion.js         funciones de sesión (estaLogueado, cerrarSesion)
+  header.js         cambia la navbar según haya sesión o no
+  login.js          inicio de sesión contra DummyJSON
+  panelAdmin.js     contadores del panel
   mascotas.js       ABML de Mascotas
   veterinarios.js   ABML de Veterinarios
+  turnos.js         ABML de Turnos
+  historia_clinica.js  registros de historia clínica e historial por mascota
 assets/
   fonts/            tipografía Nunito Sans
   img/              logo, fotos e iconos
@@ -77,7 +96,7 @@ Se agregaron las dos páginas de administración, con todo el JavaScript en arch
 
 - [x] Página de gestión de Mascotas (`mascotas.html` + `js/mascotas.js`)
 - [x] Página de gestión de Veterinarios (`veterinarios.html` + `js/veterinarios.js`)
-- [x] Ambas accesibles desde la barra de navegación.
+- [x] Ambas accesibles desde la barra de navegación (una vez iniciada la sesión aparecen los enlaces Mascotas, Veterinarios y Panel)
 - [x] Formularios y tablas maquetados con Bootstrap 5 (`form-control`, `form-select`, `input-group`, `table`, `table-striped`, `table-responsive`, `btn-group`, `badge`), manteniendo el diseño responsivo y el modo oscuro de la entrega anterior
 - [x] Cada entidad se guarda en LocalStorage bajo su propia clave: `mascotas` y `veterinarios`
 - [x] El identificador se genera solo en el alta con `crypto.randomUUID()`.
@@ -87,7 +106,7 @@ Se agregaron las dos páginas de administración, con todo el JavaScript en arch
 
 ### Mascotas
 
-- [x] **Registrar**: un campo por cada dato (`nombreMascota`, `nombreDuenio`, `especie`, `color`, `edad`, `peso`), más la imagen
+- [x] **Registrar**: un campo por cada dato (`nombreMascota`, `nombreDuenio`, `color`, `edad`, `peso`), más `especie` y la imagen, que agregamos nosotros
 - [x] **Listar**: tabla con todas las mascotas; la tabla y el contador del encabezado se actualizan después de cada alta, edición o eliminación
 - [x] **Editar**: botón por fila que carga los datos en el formulario; el formulario cambia de título y de botón, y aparece un botón para cancelar la edición
 - [x] **Eliminar**: botón por fila con `confirm()` previo
@@ -109,3 +128,47 @@ Se agregaron las dos páginas de administración, con todo el JavaScript en arch
 ### Datos de ejemplo
 
 `js/semilla.js` carga cuatro veterinarios la primera vez que se abre el sitio, así la portada no aparece vacía. Después se administran desde `veterinarios.html`. Si se borran todos a propósito, no se vuelven a mostrar devuelta los 4.
+
+### Validación de los formularios
+
+Se valida con los atributos de HTML: `required` en todos los campos, `type="number"` con `min` y `step="1"` para los enteros (`edad`, `matricula`) y `step="0.01"` para los decimales (`peso`, `valorConsulta`). Si algo no cumple, el navegador no deja enviar el formulario. Después en JavaScript se convierten con `Number`, `parseInt` y `parseFloat` antes de guardar el objeto.
+
+## 4ta entrega
+
+### Inicio de sesión con DummyJSON
+
+- [x] **Login** (`login.html` + `js/login.js`): el formulario manda usuario y contraseña con `fetch` (método `POST`) a `https://dummyjson.com/auth/login`. Si los datos son incorrectos se muestra "Usuario y/o contraseña incorrectos".
+- [x] El `accessToken` que devuelve la API se guarda en `sessionStorage`, junto con el nombre del usuario para saludarlo en el panel
+- [x] **Barra de navegación** (`js/header.js`): sin sesión solo se ven Inicio, Nosotros, Contacto e Iniciar sesión. Con sesión se agregan Mascotas, Veterinarios, Turnos, Historia Clínica, Panel y el botón Cerrar sesión, creados con `createElement`
+- [x] **Protección de páginas** (`js/sesion.js`): las páginas de administración empiezan preguntando `estaLogueado()`; si alguien escribe la URL sin haber iniciado sesión, se lo redirige a `login.html`
+- [x] **Cerrar sesión**: borra el token de `sessionStorage` y vuelve al login
+- [x] **Panel de administración** (`panelAdmin.html` + `js/panelAdmin.js`): saluda al usuario y muestra cuántas mascotas, veterinarios, turnos y registros de historia clínica hay guardados
+
+### Turnos
+
+Como en Historia Clínica, el turno guarda solo el id de la mascota y del veterinario (`idMascota`, `idVeterinario`), más la fecha y hora y el motivo. Lo administra un usuario con sesión iniciada.
+
+- [x] **Registrar** (`turnos.html` + `js/turnos.js`): la mascota y el veterinario se eligen de un `select` con los que ya están cargados; la fecha y hora con `datetime-local`. Se guarda bajo la clave `turnos`
+- [x] **Listar**: tabla ordenada del turno más próximo al más lejano, con mascota, tutor, veterinario y motivo, y buscador
+- [x] **Eliminar**: botón por fila con `confirm()` previo
+- [x] También se puede editar un turno
+- [x] Validaciones con `alert()`: no se puede dar un turno en una fecha ya pasada, y un veterinario no puede tener dos turnos el mismo día a la misma hora
+
+### Historia Clínica
+
+Cada registro es un control de una mascota. No se copian los datos de la mascota ni del veterinario: se guarda solo su id (`idMascota`, `idVeterinario`) y los nombres se buscan en sus propias claves de LocalStorage al mostrar la tabla. Si la mascota o el veterinario se borran, aparece "(mascota eliminada)" o "(veterinario eliminado)".
+
+- [x] **Registrar** (`historia_clinica.html` + `js/historia_clinica.js`): la mascota y el veterinario se eligen de un `select` armado con los que ya están cargados; además fecha, peso, temperatura, diagnóstico y tratamiento. Se guarda bajo la clave `historia_clinica`
+- [x] **Listar**: tabla ordenada de la fecha más nueva a la más vieja, con peso, temperatura, diagnóstico y tratamiento y próximo control
+- [x] **Visualizar el historial completo de una mascota**: con el buscador, que filtra mientras se escribe. Al escribir el nombre de la mascota (o de su tutor) la tabla queda solo con sus controles, del más nuevo al más viejo
+- [x] También se puede editar y eliminar un registro, igual que en las otras páginas
+- [x] Validación: si la fecha del próximo control es anterior a la del control, se avisa con `alert()` y no se guarda
+
+### Opcionales resueltos (4ta entrega)
+
+- [x] En la historia clínica se registran el peso, la temperatura y la fecha del próximo control
+- [x] Filtrar los turnos por veterinario: el buscador de `turnos.html` también busca por el nombre del veterinario
+
+### Video de exposición
+
+- Enlace: https://youtu.be/5q2CUSM0XOE

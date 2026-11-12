@@ -22,3 +22,11 @@ function crearBoton(texto, clases, manejador) {
     boton.addEventListener('click', manejador);
     return boton;
 }
+
+// crea un <option> para los select de turnos e historia clínica
+function crearOpcion(valor, texto) {
+    const opcion = document.createElement('option');
+    opcion.value = valor;
+    opcion.appendChild(document.createTextNode(texto));
+    return opcion;
+}

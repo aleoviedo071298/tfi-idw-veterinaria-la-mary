@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin</title>
+    <link rel="icon" href="./assets/img/Firefly.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilos.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script defer src="./js/semilla.js"></script>
+    <script defer src="./js/sesion.js"></script>
+    <script defer src="./js/panelAdmin.js"></script>
+</head>
+<body>
+    <!-- navbar -->
+    <header>
+        <!-- navbar-expand-lg = desde 992px se muestra en línea, antes usa el menú hamburguesa -->
+        <nav class="navbar navbar-expand-lg navbar-principal" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="./assets/img/logo.png" alt="Veterinaria La Mary">
+                </a>
+                <!-- botón hamburguesa para móvil -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- esto es lo que se colapsa en móvil -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto gap-4">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="nosotros.html">Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacto.html">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="mascotas.html">Mascotas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="veterinarios.html">Veterinarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="turnos.html">Turnos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="historia_clinica.html">Historia Clínica</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="panelAdmin.html">Panel</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-secondary" onclick="cerrarSesion()">Cerrar sesión</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+    <section class="container py-5">
+        <div class="portada text-center">
+            <div class="mb-5">
+                <h2 class="mb-0">Panel Administrador</h2>
+                <h3 class="mb-0">Hola, <span id="nombreUsuario"></span></h3>
+                <p class="mb-4">Elegí un módulo para gestionar.</p>
+            </div>
+
+            <!-- Contenedor principal con flexbox/grilla y separación (g-4) -->
+            <div class="row g-4 justify-content-center">
+                
+                <!-- Tarjeta 1: Mascotas -->
+                <article class="col-12 col-md-6 col-lg-3 d-flex">
+                    <div class="card w-100 shadow-sm border rounded-4 p-3 d-flex flex-column text-center">
+                        <div class="card-body d-flex flex-column">
+                            <h2 class="h5 card-title mb-3">
+                                Mascotas registradas
+                                <span class="badge bg-secondary align-middle ms-1" id="total-mascotas">0</span>
+                            </h2>
+                            <p class="card-text text-muted flex-grow-1">Gestión de mascotas.</p>
+                            <a href="mascotas.html" class="btn btn-principal w-100 mt-3">Ingresar</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Tarjeta 2: Profesionales -->
+                <article class="col-12 col-md-6 col-lg-3 d-flex">
+                    <div class="card w-100 shadow-sm border rounded-4 p-3 d-flex flex-column text-center">
+                        <div class="card-body d-flex flex-column">
+                            <h2 class="h5 card-title mb-3">
+                                Veterinarios registrados
+                                <span class="badge bg-secondary align-middle ms-1" id="total-veterinarios">0</span>
+                            </h2>
+                            <p class="card-text text-muted flex-grow-1">Gestión del equipo profesional.</p>
+                            <a href="veterinarios.html" class="btn btn-principal w-100 mt-3">Ingresar</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Tarjeta 3: Turnos -->
+                <article class="col-12 col-md-6 col-lg-3 d-flex">
+                    <div class="card w-100 shadow-sm border rounded-4 p-3 d-flex flex-column text-center">
+                        <div class="card-body d-flex flex-column">
+                            <h2 class="h5 card-title mb-3">
+                                Turnos
+                                <span class="badge bg-secondary align-middle ms-1" id="total-turnos">0</span>
+                            </h2>
+                            <p class="card-text text-muted flex-grow-1">Gestión de Turnos.</p>
+                            <a href="turnos.html" class="btn btn-principal w-100 mt-3">Ingresar</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Tarjeta 4: Historia Clínica -->
+                <article class="col-12 col-md-6 col-lg-3 d-flex">
+                    <div class="card w-100 shadow-sm border rounded-4 p-3 d-flex flex-column text-center">
+                        <div class="card-body d-flex flex-column">
+                            <h2 class="h5 card-title mb-3">
+                                Historia Clínica
+                                <span class="badge bg-secondary align-middle ms-1" id="total-historias">0</span>
+                            </h2>
+                            <p class="card-text text-muted flex-grow-1">Registro de consultas y tratamientos.</p>
+                            <a href="historia_clinica.html" class="btn btn-principal w-100 mt-3">Ingresar</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+    </main>      
+    <!-- footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+
+                <!-- 3 columnas, apiladas en celular -->
+                <div class="col-12 col-md-4">
+                    <h3>Veterinaria La Mary</h3>
+                    <p>Cuidamos a quienes forman parte de tu familia 🐾</p>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <ul class="nav footer-links">
+                        <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/" target="_blank"><img src="./assets/img/facebook.png" alt="Facebook"></a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/" target="_blank"><img src="./assets/img/instagram.png" alt="Instagram"></a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.tiktok.com/" target="_blank"><img src="./assets/img/tiktok.png" alt="Tiktok"></a></li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <p>📍 Argentina</p>
+                    <p>📞 +54 9 297 4040637</p>
+                </div>
+
+            </div>
+
+            <div class="footer-copyright text-center small">
+                <p>© 2026 Veterinaria La Mary. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

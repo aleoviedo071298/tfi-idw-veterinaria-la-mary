@@ -1,3 +1,7 @@
+if (!estaLogueado()) {
+    window.location.href = 'login.html';
+}
+
 // las mascotas se guardan en localStorage bajo la clave "mascotas"
 let mascotas = JSON.parse(localStorage.getItem('mascotas')) || [];
 
