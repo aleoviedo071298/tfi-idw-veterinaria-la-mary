@@ -171,4 +171,4 @@ Cada registro es un control de una mascota. No se copian los datos de la mascota
 
 ### Video de exposición
 
-- Enlace: https://youtu.be/5q2CUSM0XOE
+- Enlace: https://youtu.be/R6yx2XYhhfE
